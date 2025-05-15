@@ -28,71 +28,121 @@ const Title = styled.h2`
 const ContactGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 3rem;
+  margin-top: 3rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1rem;
   }
 `;
 
 const ContactInfo = styled.div`
-  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
 `;
 
 const InfoTitle = styled.h3`
-  color: var(--sky-blue);
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
 `;
 
 const InfoText = styled.p`
-  margin-bottom: 2rem;
-  line-height: 1.8;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 `;
 
 const ContactDetails = styled.div`
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+
+    span {
+      color: var(--sky-blue);
+      font-size: 1.2rem;
+    }
+  }
 `;
 
-const Form = styled.form`
-  background: rgba(17, 34, 64, 0.7);
+const ContactForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
   padding: 2rem;
-  border-radius: 10px;
-  border: 1px solid rgba(100, 255, 218, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
 `;
 
 const FormGroup = styled.div`
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 
 const Label = styled.label`
-  display: block;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  }
 `;
 
 const Input = styled.input`
-  width: 100%;
-  padding: 0.8rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(100, 255, 218, 0.2);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
   color: var(--text-primary);
+  font-size: 1rem;
   transition: all 0.3s ease;
 
   &:focus {
     outline: none;
     border-color: var(--sky-blue);
+    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
   }
 `;
 
 const TextArea = styled.textarea`
-  width: 100%;
-  padding: 0.8rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(100, 255, 218, 0.2);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
   color: var(--text-primary);
+  font-size: 1rem;
   min-height: 150px;
   resize: vertical;
   transition: all 0.3s ease;
@@ -100,6 +150,38 @@ const TextArea = styled.textarea`
   &:focus {
     outline: none;
     border-color: var(--sky-blue);
+    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    min-height: 120px;
+  }
+`;
+
+const SubmitButton = styled(motion.button)`
+  background: transparent;
+  color: var(--sky-blue);
+  border: 1px solid var(--sky-blue);
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+
+  &:hover {
+    background: rgba(100, 255, 218, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -160,7 +242,7 @@ const Contact = () => {
             </motion.div>
 
             <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
-              <Form onSubmit={handleSubmit}>
+              <ContactForm onSubmit={handleSubmit}>
                 <FormGroup>
                   <Label htmlFor="name">Full Name</Label>
                   <Input
@@ -229,15 +311,14 @@ const Contact = () => {
                   />
                 </FormGroup>
 
-                <motion.button
-                  className="btn"
+                <SubmitButton
                   type="submit"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Schedule Free Consultation
-                </motion.button>
-              </Form>
+                </SubmitButton>
+              </ContactForm>
             </motion.div>
           </ContactGrid>
         </Container>

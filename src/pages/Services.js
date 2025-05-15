@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { FaCode, FaMobile, FaPalette, FaChartLine, FaCloud, FaLightbulb } from 'react-icons/fa';
+import { FaCode, FaMobile, FaPalette, FaChartLine, FaLightbulb } from 'react-icons/fa';
 
 const ServicesContainer = styled.div`
   min-height: 100vh;
@@ -27,79 +26,127 @@ const Title = styled.h2`
   color: var(--sky-blue);
 `;
 
-const ServiceGrid = styled.div`
+const ServicesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  margin-top: 3rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
 `;
 
 const ServiceCard = styled(motion.div)`
-  background: rgba(17, 34, 64, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
   padding: 2rem;
-  border-radius: 10px;
-  border: 1px solid rgba(100, 255, 218, 0.1);
   transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   &:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
     border-color: var(--sky-blue);
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin: 0 1rem;
   }
 `;
 
 const ServiceIcon = styled.div`
-  width: 60px;
-  height: 60px;
-  background: rgba(100, 255, 218, 0.1);
-  border-radius: 50%;
+  font-size: 2.5rem;
+  color: var(--sky-blue);
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  color: var(--sky-blue);
-  font-size: 1.5rem;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ServiceTitle = styled.h3`
-  color: var(--sky-blue);
-  margin-bottom: 1rem;
   font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const ServiceDescription = styled.p`
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
   line-height: 1.6;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
 `;
 
 const ServiceFeatures = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
-const Feature = styled.li`
+const ServiceFeature = styled.li`
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 
-  &:before {
-    content: "→";
+  &::before {
+    content: '▹';
     color: var(--sky-blue);
+    font-size: 1.2rem;
   }
 `;
 
-const ServiceLink = styled(Link)`
-  display: inline-block;
-  margin-top: 1.5rem;
+const ServiceButton = styled(motion.button)`
+  background: transparent;
   color: var(--sky-blue);
-  text-decoration: none;
-  font-weight: 500;
+  border: 1px solid var(--sky-blue);
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
   transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
   &:hover {
-    color: var(--text-primary);
+    background: rgba(100, 255, 218, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -178,7 +225,7 @@ const Services = () => {
       <Section>
         <Container>
           <Title>Our Services</Title>
-          <ServiceGrid>
+          <ServicesGrid>
             {services.map((service, index) => (
               <ServiceCard
                 key={index}
@@ -190,15 +237,15 @@ const Services = () => {
                 <ServiceDescription>{service.description}</ServiceDescription>
                 <ServiceFeatures>
                   {service.features.map((feature, idx) => (
-                    <Feature key={idx}>{feature}</Feature>
+                    <ServiceFeature key={idx}>{feature}</ServiceFeature>
                   ))}
                 </ServiceFeatures>
-                <ServiceLink to={service.path}>
+                <ServiceButton>
                   Learn More →
-                </ServiceLink>
+                </ServiceButton>
               </ServiceCard>
             ))}
-          </ServiceGrid>
+          </ServicesGrid>
         </Container>
       </Section>
     </ServicesContainer>

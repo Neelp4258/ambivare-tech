@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -83,17 +83,93 @@ const NavLink = styled(RouterLink)`
   }
 `;
 
-const MobileMenu = styled(motion.div)`
+const MobileMenuButton = styled(motion.button)`
   display: none;
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
 
   @media (max-width: 768px) {
     display: block;
+  }
+
+  span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--sky-blue);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+`;
+
+const MobileMenu = styled(motion.div)`
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(10, 25, 47, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 6rem 2rem 2rem;
+  z-index: 1000;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const MobileNavLink = styled(RouterLink)`
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    color: var(--sky-blue);
+  }
+
+  &.active {
+    color: var(--sky-blue);
+    text-shadow: 0 0 8px rgba(100, 255, 218, 0.5);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--sky-blue);
+      box-shadow: 0 0 8px var(--sky-blue);
+    }
   }
 `;
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,6 +179,25 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    document.body.style.overflow = !isMobileMenuOpen ? 'hidden' : 'unset';
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  const menuItems = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Vision', path: '/vision' },
+    { name: 'Pricing', path: '/pricing' },
+    { name: 'Contact', path: '/contact' }
+  ];
 
   return (
     <Nav
@@ -120,14 +215,7 @@ const Navbar = () => {
           <NavLink to="/">Ambivare Tech</NavLink>
         </Logo>
         <NavLinks>
-          {[
-            { name: 'Home', path: '/' },
-            { name: 'About', path: '/about' },
-            { name: 'Services', path: '/services' },
-            { name: 'Vision', path: '/vision' },
-            { name: 'Pricing', path: '/pricing' },
-            { name: 'Contact', path: '/contact' }
-          ].map((item) => (
+          {menuItems.map((item) => (
             <NavLink
               key={item.name}
               to={item.path}
@@ -137,27 +225,43 @@ const Navbar = () => {
             </NavLink>
           ))}
         </NavLinks>
-        <MobileMenu
+        <MobileMenuButton
+          onClick={toggleMobileMenu}
+          className={isMobileMenuOpen ? 'active' : ''}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </MobileMenu>
+          <span></span>
+          <span></span>
+          <span></span>
+        </MobileMenuButton>
       </NavContainer>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <MobileMenu
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.3 }}
+          >
+            {menuItems.map((item, index) => (
+              <MobileNavLink
+                key={item.name}
+                to={item.path}
+                onClick={closeMobileMenu}
+                className={({ isActive }) => isActive ? 'active' : ''}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                {item.name}
+              </MobileNavLink>
+            ))}
+          </MobileMenu>
+        )}
+      </AnimatePresence>
     </Nav>
   );
 };

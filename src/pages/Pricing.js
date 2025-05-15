@@ -28,56 +28,101 @@ const PricingSubtitle = styled.p`
   margin: 0 auto;
 `;
 
-const ServiceGrid = styled.div`
+const PricingGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
 `;
 
-const ServiceCard = styled(motion.div)`
-  background: var(--card-bg);
+const PricingCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  text-align: center;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    border-color: var(--sky-blue);
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin: 0 1rem;
   }
 `;
 
 const ServiceIcon = styled.div`
-  font-size: 3rem;
-  margin-bottom: 20px;
-  color: var(--primary-color);
+  font-size: 2.5rem;
+  color: var(--sky-blue);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 `;
 
-const ServiceName = styled.h2`
-  font-size: 1.8rem;
+const ServiceName = styled.h3`
+  font-size: 1.5rem;
   color: var(--text-primary);
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const ServiceDescription = styled.p`
   color: var(--text-secondary);
-  margin-bottom: 25px;
   line-height: 1.6;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
 `;
 
 const ViewPricingButton = styled(Link)`
   display: inline-block;
-  background: var(--primary-color);
-  color: white;
+  background: transparent;
+  color: var(--sky-blue);
+  border: 1px solid var(--sky-blue);
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
   text-decoration: none;
-  padding: 12px 30px;
-  border-radius: 25px;
-  font-size: 1.1rem;
-  transition: background 0.3s ease;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
 
   &:hover {
-    background: var(--primary-color-dark);
+    background: rgba(100, 255, 218, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -123,9 +168,9 @@ const Pricing = () => {
         </PricingSubtitle>
       </PricingHeader>
 
-      <ServiceGrid ref={ref}>
+      <PricingGrid ref={ref}>
         {services.map((service, index) => (
-          <ServiceCard
+          <PricingCard
             key={index}
             initial={{ opacity: 0, y: 50 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -137,9 +182,9 @@ const Pricing = () => {
             <ViewPricingButton to={service.link}>
               View Pricing
             </ViewPricingButton>
-          </ServiceCard>
+          </PricingCard>
         ))}
-      </ServiceGrid>
+      </PricingGrid>
     </PricingContainer>
   );
 };
