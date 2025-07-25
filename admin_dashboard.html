@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Coaching Classes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="flex h-screen">
+
+    <!-- Sidebar -->
+    <aside class="portal-sidebar w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+        <div class="px-4 text-white text-2xl font-bold">
+            <i class="fas fa-graduation-cap mr-2"></i>
+            <span>Admin Portal</span>
+        </div>
+        <nav>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200 active" data-target="dashboard"><i class="fas fa-home mr-2"></i>Dashboard</a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="teachers"><i class="fas fa-chalkboard-teacher mr-2"></i>Teachers</a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="classes"><i class="fas fa-chalkboard mr-2"></i>Classes</a>
+            
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="candidates"><i class="fas fa-user-graduate mr-2"></i>Candidates</a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="tasks"><i class="fas fa-tasks mr-2"></i>Tasks</a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="timetable"><i class="fas fa-calendar-alt mr-2"></i>Time Table</a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="exams"><i class="fas fa-file-alt mr-2"></i>Exam Schedules</a>
+
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="attendance"><i class="fas fa-clipboard-check mr-2"></i>Attendance</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="flex justify-between items-center p-4 bg-white border-b">
+            <div class="flex items-center">
+                <button id="menu-btn" class="md:hidden text-gray-500 focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
+                <h1 id="page-title" class="text-2xl font-semibold text-gray-800 ml-4">Dashboard</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span id="userDisplay" class="text-gray-600">Welcome, Admin!</span>
+                <button id="logoutBtn" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+                <img src="https://placehold.co/40x40/E0E7FF/1E3A8A?text=A" class="rounded-full" alt="Admin avatar">
+            </div>
+        </header>
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+            <!-- Dashboard -->
+            <div id="dashboard" class="page-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card p-6 text-center"><i class="fas fa-chalkboard-teacher text-4xl text-blue-500 mb-4"></i><h3 class="text-2xl font-bold text-gray-800" id="teacher-count">0</h3><p class="text-gray-500">Teachers</p></div>
+                    <div class="card p-6 text-center"><i class="fas fa-user-graduate text-4xl text-green-500 mb-4"></i><h3 class="text-2xl font-bold text-gray-800" id="candidate-count">0</h3><p class="text-gray-500">Candidates</p></div>
+                    <div class="card p-6 text-center"><i class="fas fa-book text-4xl text-purple-500 mb-4"></i><h3 class="text-2xl font-bold text-gray-800" id="assignment-count">0</h3><p class="text-gray-500">Assignments</p></div>
+                    <div class="card p-6 text-center"><i class="fas fa-chart-line text-4xl text-orange-500 mb-4"></i><h3 class="text-2xl font-bold text-gray-800" id="submission-count">0</h3><p class="text-gray-500">Submissions</p></div>
+                </div>
+            </div>
+
+            <!-- Teachers -->
+            <div id="teachers" class="page-content hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Teachers Management</h2>
+                    <button class="btn-primary px-4 py-2 rounded-lg w-full sm:w-auto" onclick="openModal('addTeacherModal')">
+                        <i class="fas fa-plus mr-2"></i>Add Teacher
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <!-- Desktop Table -->
+                    <div class="responsive-table-container">
+                        <table class="w-full responsive-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3 text-left">Name</th>
+                                    <th class="p-3 text-left">Subjects</th>
+                                    <th class="p-3 text-left">Assigned Class</th>
+                                    <th class="p-3 text-left">Username</th>
+                                    <th class="p-3 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teacher-list"></tbody>
+                        </table>
+                    </div>
+                    <!-- Mobile Cards will be added by JavaScript -->
+                    <div id="teachers-empty" class="empty-state">No teachers added yet.</div>
+                </div>
+            </div>
+
+            <!-- Classes -->
+            <div id="classes" class="page-content hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Classes Management</h2>
+                    <button class="btn-primary px-4 py-2 rounded-lg w-full sm:w-auto" onclick="openModal('addClassModal')">
+                        <i class="fas fa-plus mr-2"></i>Add Class
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <!-- Desktop Table -->
+                    <div class="responsive-table-container">
+                        <table class="w-full responsive-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3 text-left">Class Name</th>
+                                    <th class="p-3 text-left">Subject</th>
+                                    <th class="p-3 text-left">Description</th>
+                                    <th class="p-3 text-left">Assigned Teacher</th>
+                                    <th class="p-3 text-left">Students</th>
+                                    <th class="p-3 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="class-list"></tbody>
+                        </table>
+                    </div>
+                    <!-- Mobile Cards will be added by JavaScript -->
+                    <div id="classes-empty" class="empty-state">No classes added yet.</div>
+                </div>
+            </div>
+
+
+
+            <!-- Candidates -->
+            <div id="candidates" class="page-content hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Students Management</h2>
+                    <button class="btn-primary px-4 py-2 rounded-lg w-full sm:w-auto" onclick="openModal('addCandidateModal')">
+                        <i class="fas fa-plus mr-2"></i>Add Student
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <!-- Desktop Table -->
+                    <div class="responsive-table-container">
+                        <table class="w-full responsive-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3 text-left">Name</th>
+                                    <th class="p-3 text-left">Class</th>
+                                    <th class="p-3 text-left">Email</th>
+                                    <th class="p-3 text-left">Username</th>
+                                    <th class="p-3 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="candidate-list"></tbody>
+                        </table>
+                    </div>
+                    <!-- Mobile Cards will be added by JavaScript -->
+                    <div id="candidates-empty" class="empty-state">No candidates added yet.</div>
+                </div>
+            </div>
+
+            <!-- Enhanced Tasks -->
+            <div id="tasks" class="page-content hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Task Management</h2>
+                    <button class="btn-primary px-4 py-2 rounded-lg w-full sm:w-auto" onclick="openModal('addTaskModal')">
+                        <i class="fas fa-plus mr-2"></i>Create Task
+                    </button>
+                </div>
+                
+                <!-- Task Management Dashboard -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-3">Task Overview</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600 text-sm sm:text-base">Total Tasks:</span>
+                                <span class="font-semibold" id="total-tasks">0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600 text-sm sm:text-base">Active:</span>
+                                <span class="font-semibold text-green-600" id="active-tasks">0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600 text-sm sm:text-base">Completed:</span>
+                                <span class="font-semibold text-blue-600" id="completed-tasks">0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600 text-sm sm:text-base">Overdue:</span>
+                                <span class="font-semibold text-red-600" id="overdue-tasks">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-3">Progress Tracking</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-xs sm:text-sm mb-1">
+                                    <span>Submission Rate</span>
+                                    <span id="submission-rate">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full" style="width: 0%" id="submission-bar"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs sm:text-sm mb-1">
+                                    <span>Completion Rate</span>
+                                    <span id="completion-rate">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 0%" id="completion-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow sm:col-span-2 lg:col-span-1">
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-3">Quick Filters</h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="filterTasks('all')" class="task-filter-btn bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded text-xs sm:text-sm font-medium transition-colors">
+                                All Tasks
+                            </button>
+                            <button onclick="filterTasks('active')" class="task-filter-btn bg-green-100 hover:bg-green-200 text-green-700 px-3 py-2 rounded text-xs sm:text-sm font-medium transition-colors">
+                                Active
+                            </button>
+                            <button onclick="filterTasks('completed')" class="task-filter-btn bg-blue-100 hover:bg-blue-200 text-blue-700 px-3 py-2 rounded text-xs sm:text-sm font-medium transition-colors">
+                                Completed
+                            </button>
+                            <button onclick="filterTasks('overdue')" class="task-filter-btn bg-red-100 hover:bg-red-200 text-red-700 px-3 py-2 rounded text-xs sm:text-sm font-medium transition-colors">
+                                Overdue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tasks List -->
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b gap-4">
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800">All Tasks</h3>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
+                            <select id="task-sort" class="p-2 border rounded w-full sm:w-auto">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="due-date">Due Date</option>
+                                <option value="status">Status</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Table -->
+                    <div class="responsive-table-container">
+                        <table class="w-full responsive-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3 text-left">Task Title</th>
+                                    <th class="p-3 text-left">Assigned To</th>
+                                    <th class="p-3 text-left">Subject</th>
+                                    <th class="p-3 text-left">Due Date</th>
+                                    <th class="p-3 text-left">Progress</th>
+                                    <th class="p-3 text-left">Status</th>
+                                    <th class="p-3 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="task-list"></tbody>
+                        </table>
+                    </div>
+                    <!-- Mobile Cards will be added by JavaScript -->
+                    <div id="tasks-empty" class="empty-state">No tasks created yet.</div>
+                </div>
+            </div>
+
+            <!-- Time Table -->
+            <div id="timetable" class="page-content hidden">
+                <div class="flex justify-end mb-4"><button class="btn-primary px-4 py-2 rounded-lg" onclick="openModal('addTimetableModal')"><i class="fas fa-plus mr-2"></i>Add Schedule</button></div>
+                <div class="bg-white p-4 rounded-lg shadow overflow-x-auto"><table class="w-full min-w-max"><thead class="table-header"><tr><th class="p-3 text-left">Time</th><th class="p-3 text-left">Monday</th><th class="p-3 text-left">Tuesday</th><th class="p-3 text-left">Wednesday</th><th class="p-3 text-left">Thursday</th><th class="p-3 text-left">Friday</th></tr></thead><tbody id="timetable-body"></tbody></table><div id="timetable-empty" class="empty-state">No schedule added yet.</div></div>
+            </div>
+
+            <!-- Exam Schedules -->
+            <div id="exams" class="page-content hidden">
+                 <div class="flex justify-end mb-4"><button class="btn-primary px-4 py-2 rounded-lg" onclick="openModal('addExamModal')"><i class="fas fa-plus mr-2"></i>Add Exam</button></div>
+                 <div class="bg-white p-4 rounded-lg shadow"><table class="w-full"><thead class="table-header"><tr><th class="p-3 text-left">Exam Name</th><th class="p-3 text-left">Class</th><th class="p-3 text-left">Subject</th><th class="p-3 text-left">Date</th><th class="p-3 text-left">Time</th><th class="p-3 text-left">Total Marks</th><th class="p-3 text-left">Teacher</th><th class="p-3 text-left">Actions</th></tr></thead><tbody id="exams-list"></tbody></table><div id="exams-empty" class="empty-state">No exams added yet.</div></div>
+            </div>
+
+
+
+
+
+            <!-- NEW: Advanced Attendance -->
+            <div id="attendance" class="page-content hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Advanced Attendance</h2>
+                    <div class="flex space-x-2">
+                        <button class="btn-secondary px-4 py-2 rounded-lg" onclick="openModal('attendanceReportModal')">
+                            <i class="fas fa-chart-bar mr-2"></i>Attendance Report
+                        </button>
+                        <button class="btn-primary px-4 py-2 rounded-lg" onclick="openModal('takeAttendanceModal')">
+                            <i class="fas fa-plus mr-2"></i>Take Attendance
+                        </button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Today's Attendance</h3>
+                        <div class="mb-4">
+                            <select id="attendance-class-select" class="w-full p-2 border rounded">
+                                <option value="">Select Class</option>
+                            </select>
+                        </div>
+                        <div id="today-attendance-list"></div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Attendance Statistics</h3>
+                        <div id="attendance-statistics"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Existing Modals -->
+    <div id="addTeacherModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Add New Teacher</h2>
+            <form id="addTeacherForm">
+                <div class="mb-4">
+                    <label for="teacherName" class="block text-gray-700">Name</label>
+                    <input type="text" id="teacherName" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Subjects (Multiple)</label>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <input type="text" id="teacherSubject1" class="flex-1 p-2 border rounded" placeholder="e.g., Mathematics" required>
+                            <button type="button" onclick="addSubjectField()" class="px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div id="additionalSubjects" class="space-y-2">
+                            <!-- Additional subject fields will be added here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="teacherClass" class="block text-gray-700">Assign Class (Optional)</label>
+                    <select id="teacherClass" class="w-full p-2 border rounded mt-1">
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <hr class="my-4">
+                <p class="font-semibold text-gray-600 mb-2">Login Credentials</p>
+                <div class="mb-4">
+                    <label for="teacherUsername" class="block text-gray-700">Username</label>
+                    <input type="text" id="teacherUsername" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="teacherPassword" class="block text-gray-700">Password</label>
+                    <input type="password" id="teacherPassword" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('addTeacherModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Add Teacher</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="addCandidateModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Add New Candidate</h2>
+            <form id="addCandidateForm">
+                <div class="mb-4">
+                    <label for="candidateName" class="block text-gray-700">Name</label>
+                    <input type="text" id="candidateName" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="candidateClass" class="block text-gray-700">Class</label>
+                    <select id="candidateClass" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="candidateEmail" class="block text-gray-700">Email</label>
+                    <input type="email" id="candidateEmail" class="w-full p-2 border rounded mt-1" placeholder="student@school.com">
+                </div>
+                <div class="mb-4">
+                    <label for="candidatePhone" class="block text-gray-700">Phone</label>
+                    <input type="tel" id="candidatePhone" class="w-full p-2 border rounded mt-1" placeholder="+1 234 567 8900">
+                </div>
+                <hr class="my-4">
+                <p class="font-semibold text-gray-600 mb-2">Login Credentials</p>
+                <div class="mb-4">
+                    <label for="candidateUsername" class="block text-gray-700">Username</label>
+                    <input type="text" id="candidateUsername" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="candidatePassword" class="block text-gray-700">Password</label>
+                    <input type="password" id="candidatePassword" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('addCandidateModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Add Candidate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Enhanced Task Modal -->
+    <div id="addTaskModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-2xl p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Create New Task</h2>
+            <form id="addTaskForm" enctype="multipart/form-data">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="taskTitle" class="block text-gray-700">Task Title</label>
+                        <input type="text" id="taskTitle" class="w-full p-2 border rounded mt-1" placeholder="e.g., Math Exercise 1" required>
+                    </div>
+                    <div>
+                        <label for="taskSubject" class="block text-gray-700">Subject</label>
+                        <input type="text" id="taskSubject" class="w-full p-2 border rounded mt-1" placeholder="e.g., Mathematics" required>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="taskDesc" class="block text-gray-700">Description</label>
+                    <textarea id="taskDesc" class="w-full p-2 border rounded mt-1" rows="3" placeholder="Task details and instructions..." required></textarea>
+                </div>
+                
+                <!-- Assignment Target Selection -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Assign To</label>
+                    <div class="flex space-x-4 mb-3">
+                        <label class="flex items-center">
+                            <input type="radio" name="assignmentType" value="class" checked class="mr-2" onchange="updateAssignmentOptions()">
+                            <span>Class</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="assignmentType" value="student" class="mr-2" onchange="updateAssignmentOptions()">
+                            <span>Specific Student</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="assignmentType" value="teacher" class="mr-2" onchange="updateAssignmentOptions()">
+                            <span>Teacher</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Dynamic assignment options -->
+                    <div id="assignmentOptions">
+                        <select id="taskClass" class="w-full p-2 border rounded mt-1" required>
+                            <option value="">Select Class</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="taskDueDate" class="block text-gray-700">Due Date</label>
+                        <input type="date" id="taskDueDate" class="w-full p-2 border rounded mt-1" required>
+                    </div>
+                    <div>
+                        <label for="taskPriority" class="block text-gray-700">Priority</label>
+                        <select id="taskPriority" class="w-full p-2 border rounded mt-1">
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- File Upload Section -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Attach Files (Optional)</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-4">
+                        <div class="text-center">
+                            <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                            <p class="text-gray-600 mb-2">Drop files here or click to browse</p>
+                            <input type="file" id="taskFiles" class="hidden" multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.ppt,.pptx">
+                            <button type="button" onclick="document.getElementById('taskFiles').click()" class="btn-secondary px-4 py-2 rounded-lg">
+                                Choose Files
+                            </button>
+                        </div>
+                        <div id="fileList" class="mt-3"></div>
+                    </div>
+                </div>
+                
+                <!-- Submission Settings -->
+                <div class="mb-4">
+                    <div class="flex items-center space-x-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="allowFileSubmission" checked class="mr-2">
+                            <span>Allow file submissions</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="allowLateSubmission" class="mr-2">
+                            <span>Allow late submissions</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('addTaskModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Create Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Add Timetable Modal -->
+    <div id="addTimetableModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Add Timetable Entry</h2>
+            <form id="addTimetableForm">
+                <div class="mb-4">
+                    <label for="ttTime" class="block text-gray-700">Time Slot</label>
+                    <select id="ttTime" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Time</option>
+                        <option value="09:00-10:00">09:00 - 10:00</option>
+                        <option value="10:00-11:00">10:00 - 11:00</option>
+                        <option value="11:00-12:00">11:00 - 12:00</option>
+                        <option value="14:00-15:00">14:00 - 15:00</option>
+                        <option value="15:00-16:00">15:00 - 16:00</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="ttDay" class="block text-gray-700">Day</label>
+                    <select id="ttDay" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Day</option>
+                        <option value="1">Monday</option>
+                        <option value="2">Tuesday</option>
+                        <option value="3">Wednesday</option>
+                        <option value="4">Thursday</option>
+                        <option value="5">Friday</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="ttClass" class="block text-gray-700">Class</label>
+                    <select id="ttClass" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="ttSubject" class="block text-gray-700">Subject</label>
+                    <input type="text" id="ttSubject" class="w-full p-2 border rounded mt-1" placeholder="e.g., Mathematics">
+                </div>
+                <div class="mb-4">
+                    <label for="ttTeacher" class="block text-gray-700">Teacher</label>
+                    <select id="ttTeacher" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Teacher</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="ttRoom" class="block text-gray-700">Room</label>
+                    <input type="text" id="ttRoom" class="w-full p-2 border rounded mt-1" placeholder="e.g., Room 101">
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('addTimetableModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Add to Schedule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Add Exam Modal -->
+    <div id="addExamModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Schedule New Exam</h2>
+            <form id="addExamForm">
+                <div class="mb-4">
+                    <label for="examName" class="block text-gray-700">Exam Name</label>
+                    <input type="text" id="examName" class="w-full p-2 border rounded mt-1" placeholder="e.g., Mid-Term Mathematics" required>
+                </div>
+                <div class="mb-4">
+                    <label for="examClass" class="block text-gray-700">Class</label>
+                    <select id="examClass" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="examSubject" class="block text-gray-700">Subject</label>
+                    <input type="text" id="examSubject" class="w-full p-2 border rounded mt-1" placeholder="e.g., Mathematics">
+                </div>
+                <div class="mb-4">
+                    <label for="examDate" class="block text-gray-700">Date</label>
+                    <input type="date" id="examDate" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="examTime" class="block text-gray-700">Time</label>
+                    <input type="time" id="examTime" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="examDuration" class="block text-gray-700">Duration</label>
+                    <select id="examDuration" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Duration</option>
+                        <option value="1 hour">1 hour</option>
+                        <option value="1.5 hours">1.5 hours</option>
+                        <option value="2 hours">2 hours</option>
+                        <option value="3 hours">3 hours</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="examMarks" class="block text-gray-700">Total Marks</label>
+                    <input type="number" id="examMarks" class="w-full p-2 border rounded mt-1" placeholder="100" min="1" required>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('addExamModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Schedule Exam</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- NEW: Take Attendance Modal -->
+    <div id="takeAttendanceModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-lg p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Take Attendance</h2>
+            <form id="takeAttendanceForm">
+                <div class="mb-4">
+                    <label for="attendanceClass" class="block text-gray-700">Class</label>
+                    <select id="attendanceClass" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="attendanceDate" class="block text-gray-700">Date</label>
+                    <input type="date" id="attendanceDate" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div id="attendanceStudentsList" class="mb-4">
+                    <!-- Will be populated dynamically -->
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('takeAttendanceModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Save Attendance</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- NEW: Attendance Report Modal -->
+    <div id="attendanceReportModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-4xl p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Attendance Report</h2>
+            <div class="mb-4">
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label for="reportStudent" class="block text-gray-700">Student</label>
+                        <select id="reportStudent" class="w-full p-2 border rounded mt-1">
+                            <option value="">All Students</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="reportStartDate" class="block text-gray-700">Start Date</label>
+                        <input type="date" id="reportStartDate" class="w-full p-2 border rounded mt-1">
+                    </div>
+                    <div>
+                        <label for="reportEndDate" class="block text-gray-700">End Date</label>
+                        <input type="date" id="reportEndDate" class="w-full p-2 border rounded mt-1">
+                    </div>
+                </div>
+                <button onclick="generateAttendanceReport()" class="btn-primary px-4 py-2 rounded-lg mt-4">
+                    <i class="fas fa-chart-bar mr-2"></i>Generate Report
+                </button>
+            </div>
+            <div id="attendanceReportContent"></div>
+            <div class="flex justify-end space-x-4 mt-4">
+                <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('attendanceReportModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Add Class Modal -->
+    <div id="addClassModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Add New Class</h2>
+            <form id="addClassForm">
+                <div class="mb-4">
+                    <label for="className" class="block text-gray-700">Class Name</label>
+                    <input type="text" id="className" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="classSubject" class="block text-gray-700">Subject (Optional)</label>
+                    <input type="text" id="classSubject" class="w-full p-2 border rounded mt-1" placeholder="e.g., Mathematics, Science, etc.">
+                </div>
+                <div class="mb-4">
+                    <label for="classDescription" class="block text-gray-700">Description</label>
+                    <textarea id="classDescription" class="w-full p-2 border rounded mt-1" rows="3" placeholder="Class description..."></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="classTeacher" class="block text-gray-700">Assign Teacher (Optional)</label>
+                    <select id="classTeacher" class="w-full p-2 border rounded mt-1">
+                        <option value="">Select Teacher</option>
+                    </select>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('addClassModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Add Class</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Class Modal -->
+    <div id="editClassModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Edit Class</h2>
+            <form id="editClassForm">
+                <input type="hidden" id="editClassId">
+                <div class="mb-4">
+                    <label for="editClassName" class="block text-gray-700">Class Name</label>
+                    <input type="text" id="editClassName" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editClassSubject" class="block text-gray-700">Subject (Optional)</label>
+                    <input type="text" id="editClassSubject" class="w-full p-2 border rounded mt-1" placeholder="e.g., Mathematics, Science, etc.">
+                </div>
+                <div class="mb-4">
+                    <label for="editClassDescription" class="block text-gray-700">Description</label>
+                    <textarea id="editClassDescription" class="w-full p-2 border rounded mt-1" rows="3" placeholder="Class description..."></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="editClassTeacher" class="block text-gray-700">Assign Teacher (Optional)</label>
+                    <select id="editClassTeacher" class="w-full p-2 border rounded mt-1">
+                        <option value="">Select Teacher</option>
+                    </select>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('editClassModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Update Class</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Teacher Modal -->
+    <div id="editTeacherModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Edit Teacher</h2>
+            <form id="editTeacherForm">
+                <input type="hidden" id="editTeacherId">
+                <div class="mb-4">
+                    <label for="editTeacherName" class="block text-gray-700">Name</label>
+                    <input type="text" id="editTeacherName" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Subjects (Multiple)</label>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <input type="text" id="editTeacherSubject1" class="flex-1 p-2 border rounded" placeholder="e.g., Mathematics" required>
+                            <button type="button" onclick="addEditSubjectField()" class="px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div id="editAdditionalSubjects" class="space-y-2">
+                            <!-- Additional subject fields will be added here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="editTeacherClass" class="block text-gray-700">Assign Class (Optional)</label>
+                    <select id="editTeacherClass" class="w-full p-2 border rounded mt-1">
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="editTeacherUsername" class="block text-gray-700">Username</label>
+                    <input type="text" id="editTeacherUsername" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('editTeacherModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Update Teacher</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Student Modal -->
+    <div id="editCandidateModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Edit Student</h2>
+            <form id="editCandidateForm">
+                <input type="hidden" id="editCandidateId">
+                <div class="mb-4">
+                    <label for="editCandidateName" class="block text-gray-700">Name</label>
+                    <input type="text" id="editCandidateName" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editCandidateClass" class="block text-gray-700">Class</label>
+                    <select id="editCandidateClass" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="editCandidateEmail" class="block text-gray-700">Email</label>
+                    <input type="email" id="editCandidateEmail" class="w-full p-2 border rounded mt-1" placeholder="student@school.com">
+                </div>
+                <div class="mb-4">
+                    <label for="editCandidatePhone" class="block text-gray-700">Phone</label>
+                    <input type="tel" id="editCandidatePhone" class="w-full p-2 border rounded mt-1" placeholder="+1 234 567 8900">
+                </div>
+                <div class="mb-4">
+                    <label for="editCandidateUsername" class="block text-gray-700">Username</label>
+                    <input type="text" id="editCandidateUsername" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('editCandidateModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Update Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div id="editTaskModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Edit Task</h2>
+            <form id="editTaskForm">
+                <input type="hidden" id="editTaskId">
+                <div class="mb-4">
+                    <label for="editTaskTitle" class="block text-gray-700">Task Title</label>
+                    <input type="text" id="editTaskTitle" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editTaskDesc" class="block text-gray-700">Description</label>
+                    <textarea id="editTaskDesc" class="w-full p-2 border rounded mt-1" rows="3" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="editTaskClass" class="block text-gray-700">Class</label>
+                    <select id="editTaskClass" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="editTaskDueDate" class="block text-gray-700">Due Date</label>
+                    <input type="date" id="editTaskDueDate" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('editTaskModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Update Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Exam Modal -->
+    <div id="editExamModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-md p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Edit Exam</h2>
+            <form id="editExamForm">
+                <input type="hidden" id="editExamId">
+                <div class="mb-4">
+                    <label for="editExamName" class="block text-gray-700">Exam Name</label>
+                    <input type="text" id="editExamName" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editExamClass" class="block text-gray-700">Class</label>
+                    <select id="editExamClass" class="w-full p-2 border rounded mt-1" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="editExamSubject" class="block text-gray-700">Subject</label>
+                    <input type="text" id="editExamSubject" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editExamDate" class="block text-gray-700">Date</label>
+                    <input type="date" id="editExamDate" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editExamTime" class="block text-gray-700">Time</label>
+                    <input type="time" id="editExamTime" class="w-full p-2 border rounded mt-1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editExamMarks" class="block text-gray-700">Total Marks</label>
+                    <input type="number" id="editExamMarks" class="w-full p-2 border rounded mt-1" placeholder="100" min="1" required>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('editExamModal')">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Update Exam</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script src="js/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/portals.js"></script>
+    <script src="js/advanced-features.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!auth.protectPage('admin')) {
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

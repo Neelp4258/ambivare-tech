@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - DazzloCore X</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="login-form-card w-full max-w-md p-8 rounded-lg shadow-lg">
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+                <i class="fas fa-user-shield text-2xl text-blue-600"></i>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-800">Admin Login</h1>
+            <p class="text-gray-600 mt-2">Access the administration portal</p>
+        </div>
+
+        <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                <input type="text" id="username" name="username" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 login-input-focus" 
+                       placeholder="Enter admin username" required>
+            </div>
+
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <input type="password" id="password" name="password" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 login-input-focus" 
+                       placeholder="Enter admin password" required>
+            </div>
+
+            <!-- Debug Information -->
+            <div id="debugInfo" class="mb-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-600 hidden">
+                <strong>Debug Info:</strong><br>
+                <span id="debugText">Initializing...</span>
+            </div>
+
+            <div id="errorMessage" class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg hidden"></div>
+            <div id="successMessage" class="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg hidden"></div>
+
+            <button type="submit" id="loginBtn" 
+                    class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium transition-colors">
+                <span id="loginBtnText">Sign In</span>
+                <i id="loginSpinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <a href="index.html" class="text-blue-600 hover:text-blue-800 text-sm">
+                ← Back to Home
+            </a>
+        </div>
+
+        <!-- Default Credentials Info -->
+        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+            <p class="text-sm text-blue-800 font-medium">Default Admin Credentials:</p>
+            <p class="text-xs text-blue-600 mt-1">Username: siddhant_MD</p>
+            <p class="text-xs text-blue-600">Password: Bhavani@Dazzlo</p>
+        </div>
+    </div>
+
+    <script src="js/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Global error handler
+        window.addEventListener('error', function(e) {
+            console.error('Global error:', e.error);
+            updateDebugInfo('Error: ' + e.message);
+        });
+
+        // Check system status on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                checkSystemStatus();
+            }, 200);
+        });
+
+        function checkSystemStatus() {
+            const debugDiv = document.getElementById('debugInfo');
+            const debugText = document.getElementById('debugText');
+            
+            debugDiv.classList.remove('hidden');
+            
+            let status = '';
+            
+            // Check if database is available
+            if (typeof db !== 'undefined') {
+                status += 'Database: OK<br>';
+                
+                // Check localStorage
+                try {
+                    localStorage.setItem('test', 'test');
+                    localStorage.removeItem('test');
+                    status += 'LocalStorage: OK<br>';
+                } catch (e) {
+                    status += 'LocalStorage: ERROR - ' + e.message + '<br>';
+                }
+                
+                // Check admin credentials
+                const adminCreds = localStorage.getItem('adminCredentials');
+                if (adminCreds) {
+                    status += 'Admin Creds: Found<br>';
+                } else {
+                    status += 'Admin Creds: Missing (will use fallback)<br>';
+                }
+                
+            } else {
+                status += 'Database: NOT LOADED<br>';
+            }
+            
+            // Check auth system
+            if (typeof auth !== 'undefined') {
+                status += 'Auth System: OK<br>';
+            } else {
+                status += 'Auth System: NOT LOADED<br>';
+            }
+            
+            debugText.innerHTML = status;
+        }
+
+        function updateDebugInfo(message) {
+            const debugText = document.getElementById('debugText');
+            debugText.innerHTML += message + '<br>';
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const loginBtn = document.getElementById('loginBtn');
+            const loginBtnText = document.getElementById('loginBtnText');
+            const loginSpinner = document.getElementById('loginSpinner');
+            
+            // Show loading state
+            loginBtn.disabled = true;
+            loginBtnText.textContent = 'Signing In...';
+            loginSpinner.classList.remove('hidden');
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            updateDebugInfo(`Attempting login with username: ${username}`);
+            
+            try {
+                const result = auth.login('admin', username, password);
+                
+                if (result.success) {
+                    showSuccess('Login successful! Redirecting...');
+                    updateDebugInfo('Login successful');
+                    setTimeout(() => {
+                        window.location.href = 'admin_dashboard.html';
+                    }, 1500);
+                } else {
+                    showError(result.message || 'Login failed');
+                    updateDebugInfo('Login failed: ' + (result.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showError('System error occurred. Please try again.');
+                updateDebugInfo('System error: ' + error.message);
+            }
+            
+            // Reset button state
+            loginBtn.disabled = false;
+            loginBtnText.textContent = 'Sign In';
+            loginSpinner.classList.add('hidden');
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+            successDiv.classList.add('hidden');
+        }
+
+        function showSuccess(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            
+            successDiv.textContent = message;
+            successDiv.classList.remove('hidden');
+            errorDiv.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

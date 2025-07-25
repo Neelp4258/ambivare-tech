@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Portal - Coaching Classes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="flex h-screen bg-gray-100">
+
+    <!-- Sidebar -->
+    <aside class="portal-sidebar w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+        <div class="px-4 text-white text-xl sm:text-2xl font-bold">
+            <i class="fas fa-chalkboard-user mr-2"></i>
+            <span>Teacher Portal</span>
+        </div>
+        <nav>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200 active" data-target="dashboard">
+                <i class="fas fa-home mr-2"></i>Dashboard
+            </a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="students">
+                <i class="fas fa-user-graduate mr-2"></i>My Students
+            </a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="classes">
+                <i class="fas fa-chalkboard mr-2"></i>My Classes
+            </a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="tasks">
+                <i class="fas fa-tasks mr-2"></i>Tasks
+            </a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="attendance">
+                <i class="fas fa-clipboard-check mr-2"></i>Attendance
+            </a>
+            <a href="#" class="block py-2.5 px-4 rounded transition duration-200" data-target="analytics">
+                <i class="fas fa-chart-bar mr-2"></i>Analytics
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="flex justify-between items-center p-3 sm:p-4 bg-white border-b">
+            <div class="flex items-center">
+                <button id="menu-btn" class="md:hidden text-gray-500 focus:outline-none touch-friendly">
+                    <i class="fas fa-bars text-xl sm:text-2xl"></i>
+                </button>
+                <h1 id="page-title" class="text-lg sm:text-2xl font-semibold text-gray-800 ml-2 sm:ml-4">Dashboard</h1>
+            </div>
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <span id="userDisplay" class="text-gray-600 text-sm sm:text-base hidden sm:block">Welcome, Teacher!</span>
+                <button id="logoutBtn" class="text-gray-600 hover:text-gray-800 touch-friendly">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+                <img src="https://placehold.co/40x40/E0E7FF/1E3A8A?text=T" class="rounded-full w-8 h-8 sm:w-10 sm:h-10" alt="Teacher avatar">
+            </div>
+        </header>
+        
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-3 sm:p-6">
+            <!-- Dashboard -->
+            <div id="dashboard" class="page-content">
+                <!-- Dashboard content will be loaded by JavaScript -->
+            </div>
+
+            <!-- My Students -->
+            <div id="students" class="page-content hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">My Students</h2>
+                </div>
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <!-- Desktop Table -->
+                    <div class="responsive-table-container">
+                        <table class="w-full responsive-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3 text-left">Name</th>
+                                    <th class="p-3 text-left">Class</th>
+                                    <th class="p-3 text-left">Email</th>
+                                    <th class="p-3 text-left">Attendance</th>
+                                    <th class="p-3 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teacher-students-list"></tbody>
+                        </table>
+                    </div>
+                    <!-- Mobile Cards will be added by JavaScript -->
+                    <div id="teacher-students-empty" class="empty-state">No students assigned to your classes.</div>
+                </div>
+            </div>
+
+            <!-- My Classes -->
+            <div id="classes" class="page-content hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">My Classes</h2>
+                </div>
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <!-- Desktop Table -->
+                    <div class="responsive-table-container">
+                        <table class="w-full responsive-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3 text-left">Class Name</th>
+                                    <th class="p-3 text-left">Subject</th>
+                                    <th class="p-3 text-left">Description</th>
+                                    <th class="p-3 text-left">Students</th>
+                                    <th class="p-3 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teacher-classes-list"></tbody>
+                        </table>
+                    </div>
+                    <!-- Mobile Cards will be added by JavaScript -->
+                    <div id="teacher-classes-empty" class="empty-state">No classes assigned to you.</div>
+                </div>
+            </div>
+
+            <!-- Tasks -->
+            <div id="tasks" class="page-content hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Tasks</h2>
+                    <button onclick="openTeacherTaskModal()" class="btn-primary px-4 py-2 rounded-lg">
+                        <i class="fas fa-plus mr-2"></i>Create Task
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <!-- Desktop Table -->
+                    <div class="responsive-table-container">
+                        <table class="w-full responsive-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3 text-left">Task Title</th>
+                                    <th class="p-3 text-left">Assigned To</th>
+                                    <th class="p-3 text-left">Subject</th>
+                                    <th class="p-3 text-left">Due Date</th>
+                                    <th class="p-3 text-left">Progress</th>
+                                    <th class="p-3 text-left">Status</th>
+                                    <th class="p-3 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="task-list"></tbody>
+                        </table>
+                    </div>
+                    <!-- Mobile Cards will be added by JavaScript -->
+                    <div id="tasks-empty" class="empty-state">No tasks available.</div>
+                </div>
+            </div>
+
+            <!-- Attendance -->
+            <div id="attendance" class="page-content hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Attendance Management</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Secure Attendance System</h3>
+                        <div class="space-y-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-800 mb-2">Create OTP Session</h4>
+                                <p class="text-sm text-blue-700 mb-3">Generate a 6-digit OTP for students to mark attendance</p>
+                                <select id="classSelect" class="w-full p-2 border rounded-lg mb-3">
+                                    <option value="">Select a class...</option>
+                                </select>
+                                <button onclick="otpAttendanceUI.createOTPSessionUI(document.getElementById('classSelect').value, auth.getCurrentUser().id)" 
+                                        class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                                    <i class="fas fa-key mr-2"></i>Generate OTP
+                                </button>
+                            </div>
+                            
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-green-800 mb-2">Active Sessions</h4>
+                                <div id="active-sessions-list" class="space-y-2">
+                                    <!-- Active sessions will be listed here -->
+                                </div>
+                            </div>
+                            
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-purple-800 mb-2">OTP Session History</h4>
+                                <button onclick="otpAttendanceUI.showSessionHistory(auth.getCurrentUser().id)" 
+                                        class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+                                    <i class="fas fa-history mr-2"></i>View History
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Attendance Statistics</h3>
+                        <div id="attendance-statistics">
+                            <!-- Statistics will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics -->
+            <div id="analytics" class="page-content hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Analytics</h2>
+                </div>
+                <div id="teacher-analytics">
+                    <!-- Analytics content will be loaded by JavaScript -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Teacher Task Modal -->
+    <div id="teacherTaskModal" class="modal-backdrop fixed inset-0 flex items-center justify-center hidden">
+        <div class="modal-content w-full max-w-2xl p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold mb-4">Create New Task</h2>
+            <form id="teacherTaskForm" enctype="multipart/form-data">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="teacherTaskTitle" class="block text-gray-700">Task Title</label>
+                        <input type="text" id="teacherTaskTitle" class="w-full p-2 border rounded mt-1" placeholder="e.g., Math Exercise 1" required>
+                    </div>
+                    <div>
+                        <label for="teacherTaskSubject" class="block text-gray-700">Subject</label>
+                        <input type="text" id="teacherTaskSubject" class="w-full p-2 border rounded mt-1" placeholder="e.g., Mathematics" required>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="teacherTaskDesc" class="block text-gray-700">Description</label>
+                    <textarea id="teacherTaskDesc" class="w-full p-2 border rounded mt-1" rows="3" placeholder="Task details and instructions..." required></textarea>
+                </div>
+                
+                <!-- Assignment Target Selection -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Assign To</label>
+                    <div class="flex space-x-4 mb-3">
+                        <label class="flex items-center">
+                            <input type="radio" name="teacherAssignmentType" value="class" checked class="mr-2" onchange="updateTeacherAssignmentOptions()">
+                            <span>My Class</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="teacherAssignmentType" value="student" class="mr-2" onchange="updateTeacherAssignmentOptions()">
+                            <span>Specific Student</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Dynamic assignment options -->
+                    <div id="teacherAssignmentOptions">
+                        <select id="teacherTaskClass" class="w-full p-2 border rounded mt-1" required>
+                            <option value="">Select Class</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="teacherTaskDueDate" class="block text-gray-700">Due Date</label>
+                        <input type="date" id="teacherTaskDueDate" class="w-full p-2 border rounded mt-1" required>
+                    </div>
+                    <div>
+                        <label for="teacherTaskPriority" class="block text-gray-700">Priority</label>
+                        <select id="teacherTaskPriority" class="w-full p-2 border rounded mt-1">
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- File Upload Section -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Attach Files (Optional)</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-4">
+                        <div class="text-center">
+                            <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                            <p class="text-gray-600 mb-2">Drop files here or click to browse</p>
+                            <input type="file" id="teacherTaskFiles" class="hidden" multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.ppt,.pptx">
+                            <button type="button" onclick="document.getElementById('teacherTaskFiles').click()" class="btn-secondary px-4 py-2 rounded-lg">
+                                Choose Files
+                            </button>
+                        </div>
+                        <div id="teacherFileList" class="mt-3"></div>
+                    </div>
+                </div>
+                
+                <!-- Submission Settings -->
+                <div class="mb-4">
+                    <div class="flex items-center space-x-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="teacherAllowFileSubmission" checked class="mr-2">
+                            <span>Allow file submissions</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="teacherAllowLateSubmission" class="mr-2">
+                            <span>Allow late submissions</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary px-4 py-2 rounded-lg" onclick="closeTeacherTaskModal()">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 rounded-lg">Create Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/otp-attendance-ui.js"></script>
+    <script src="js/portals.js"></script>
+    <script src="js/advanced-features.js"></script>
+    <script src="js/teacher-task-manager.js"></script>
+</body>
+</html>
