@@ -1,0 +1,30 @@
+{
+  "name": "ambivare-crm",
+  "version": "1.0.0",
+  "description": "Ambivare - Advanced Coaching Institute Management System",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'No build step required for static site'",
+    "dev": "serve . -p 3000"
+  },
+  "keywords": [
+    "crm",
+    "education",
+    "coaching",
+    "management",
+    "attendance",
+    "student-portal",
+    "teacher-portal"
+  ],
+  "author": "Ambivare Team",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ambivare/ambivare-crm.git"
+  },
+  "homepage": "https://ambivare.com"
+} 

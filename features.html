@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Features - DazzloCore X</title>
+    <title>Features - Ambivare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,8 +14,9 @@
     <!-- Header -->
     <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-            <a href="./index.html" class="text-xl sm:text-2xl font-extrabold text-blue-800">
-                DazzloCore X
+            <a href="./index.html" class="flex items-center space-x-3">
+                <img src="logo.png" alt="Ambivare Logo" class="w-8 h-8 sm:w-10 sm:h-10">
+                <div class="text-xl sm:text-2xl font-extrabold text-blue-800">Ambivare</div>
             </a>
             
             <!-- Desktop Navigation -->
@@ -58,67 +59,160 @@
         <section class="page-header text-white text-center py-12 sm:py-20 md:py-28">
             <div class="container mx-auto px-4 sm:px-6">
                 <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">Powerful Features for a Seamless Experience</h1>
-                <p class="mt-4 text-base sm:text-lg md:text-xl text-blue-200 max-w-3xl mx-auto">Discover the tools designed to elevate every aspect of your coaching institute.</p>
+                <p class="mt-4 text-base sm:text-lg md:text-xl text-blue-200 max-w-3xl mx-auto">Empowering Educators, Inspiring Students</p>
             </div>
         </section>
 
-        <!-- Admin Portal Features -->
+        <!-- Current Features -->
         <section class="py-12 sm:py-20">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="mb-8 sm:mb-12">
                     <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 feature-section-title flex flex-col sm:flex-row items-start sm:items-center">
-                        <i class="fas fa-user-shield text-blue-700 mr-0 sm:mr-4 mb-2 sm:mb-0"></i>
-                        <span>Admin Portal Features</span>
+                        <i class="fas fa-check-circle text-green-600 mr-0 sm:mr-4 mb-2 sm:mb-0"></i>
+                        <span>Current Features</span>
                     </h2>
-                    <p class="mt-4 text-gray-600 max-w-3xl text-sm sm:text-base">The central command center for complete institute management and oversight.</p>
+                    <p class="mt-4 text-gray-600 max-w-3xl text-sm sm:text-base">Features that are fully implemented and ready to use.</p>
+                </div>
+                
+                <!-- Admin Features -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-user-shield text-blue-700 mr-3"></i>
+                        Admin Portal
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">User Management</h4>
+                            <p>Create, edit, and manage teacher and student accounts with secure login credentials.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Class Management</h4>
+                            <p>Create classes and assign teachers to them. Manage class-student relationships.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Dashboard Analytics</h4>
+                            <p>View key metrics including total teachers, students, assignments, and submissions.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Task Management</h4>
+                            <p>Assign tasks to teachers and track their completion status.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Timetable Management</h4>
+                            <p>Create and manage class schedules with real-time updates across all portals.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Exam Scheduling</h4>
+                            <p>Schedule exams and manage exam-related information.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Features -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-chalkboard-user text-green-700 mr-3"></i>
+                        Teacher Portal
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">OTP Attendance System</h4>
+                            <p>Generate 6-digit OTP codes for secure attendance tracking with time-limited sessions.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Homework Management</h4>
+                            <p>Create and assign homework with descriptions and due dates for specific classes.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Task Management</h4>
+                            <p>View assigned tasks, submit files, and track completion status.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Personalized Dashboard</h4>
+                            <p>View assigned classes, upcoming exams, and student information.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Attendance History</h4>
+                            <p>View detailed attendance records and session history for all classes.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Class Management</h4>
+                            <p>Manage assigned classes and view student lists.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student Features -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-user-graduate text-indigo-700 mr-3"></i>
+                        Student Portal
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">OTP Attendance</h4>
+                            <p>Mark attendance using 6-digit OTP codes provided by teachers.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Personalized Dashboard</h4>
+                            <p>View today's classes, upcoming exams, and homework assignments.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Attendance History</h4>
+                            <p>View complete attendance records with dates, classes, and teachers.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Homework Tracking</h4>
+                            <p>View assigned homework with descriptions and due dates.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Timetable Access</h4>
+                            <p>Access personalized class schedules and exam timetables.</p>
+                        </div>
+                        <div class="feature-item-card">
+                            <h4 class="text-lg font-bold mb-2">Secure Portal</h4>
+                            <p>Access personal academic information with secure login credentials.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Features -->
+        <section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="mb-8 sm:mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 feature-section-title flex flex-col sm:flex-row items-start sm:items-center">
+                        <i class="fas fa-rocket text-purple-600 mr-0 sm:mr-4 mb-2 sm:mb-0"></i>
+                        <span>Upcoming Features</span>
+                    </h2>
+                    <p class="mt-4 text-gray-600 max-w-3xl text-sm sm:text-base">Exciting new features coming soon to enhance your experience.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">User Management</h3><p>Effortlessly create, manage, and remove profiles for teachers and students, including their login credentials.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Timetable Creation</h3><p>Design and publish class schedules for all courses. Any updates are reflected in real-time across all portals.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Exam Scheduling</h3><p>Schedule mid-terms, finals, and unit tests. Students and teachers are automatically notified of upcoming exams.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Centralized Dashboard</h3><p>Get a bird's-eye view of your institute with key metrics like total students, teachers, and active courses.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Task Assignment</h3><p>Assign administrative tasks or create announcements that are broadcast to relevant users across the platform.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Secure Login</h3><p>A dedicated and secure login ensures that only authorized administrators can access the portal's powerful features.</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Teacher Portal Features -->
-        <section class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="mb-12">
-                    <h2 class="text-3xl font-bold text-gray-800 feature-section-title flex items-center">
-                        <i class="fas fa-chalkboard-user text-green-700 mr-4"></i>
-                        Teacher Portal Features
-                    </h2>
-                    <p class="mt-4 text-gray-600 max-w-3xl">Tools designed to empower educators and streamline their daily workflow.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Homework Management</h3><p>Create, assign, and track homework for specific courses. Provide descriptions and set due dates with ease.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Attendance Tracking</h3><p>Take and manage student attendance digitally. Records are saved for future analysis and reporting.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Exam Results Entry</h3><p>Enter and manage student marks for exams scheduled by the admin. Results are stored for report generation.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Student Analytics</h3><p>View individual student reports, including attendance history and homework status, to monitor performance.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Personalized Timetable</h3><p>View a personalized schedule that highlights only your assigned classes, helping you stay organized.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Role-Based Access</h3><p>Log in to a dedicated portal that provides all the necessary tools without the clutter of administrative functions.</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Student Portal Features -->
-        <section class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="mb-12">
-                    <h2 class="text-3xl font-bold text-gray-800 feature-section-title flex items-center">
-                        <i class="fas fa-user-graduate text-indigo-700 mr-4"></i>
-                        Student Portal Features
-                    </h2>
-                    <p class="mt-4 text-gray-600 max-w-3xl">An intuitive and personalized hub for students to stay on top of their academic life.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Personalized Dashboard</h3><p>Get an instant overview of your day, including today's classes and your next upcoming exam.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Real-Time Timetable</h3><p>Access your up-to-date class schedule, filtered specifically for your course.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Exam & Homework Info</h3><p>Never miss a deadline. View all your scheduled exams and assigned homework in one place.</p></div>
-                    <div class="feature-item-card"><h3 class="text-xl font-bold mb-2">Secure & Private</h3><p>Log in with your unique credentials to access a portal that contains only your personal academic information.</p></div>
+                    <div class="feature-item-card bg-white/80 backdrop-blur-sm border-purple-200">
+                        <h3 class="text-lg font-bold mb-2 text-purple-700">Advanced Analytics</h3>
+                        <p>Comprehensive reporting and analytics dashboard with performance insights and trends.</p>
+                    </div>
+                    <div class="feature-item-card bg-white/80 backdrop-blur-sm border-purple-200">
+                        <h3 class="text-lg font-bold mb-2 text-purple-700">Email Notifications</h3>
+                        <p>Automated email alerts for attendance, homework deadlines, and exam schedules.</p>
+                    </div>
+                    <div class="feature-item-card bg-white/80 backdrop-blur-sm border-purple-200">
+                        <h3 class="text-lg font-bold mb-2 text-purple-700">Mobile App</h3>
+                        <p>Native mobile applications for iOS and Android with push notifications.</p>
+                    </div>
+                    <div class="feature-item-card bg-white/80 backdrop-blur-sm border-purple-200">
+                        <h3 class="text-lg font-bold mb-2 text-purple-700">Video Integration</h3>
+                        <p>Integration with video conferencing platforms for online classes.</p>
+                    </div>
+                    <div class="feature-item-card bg-white/80 backdrop-blur-sm border-purple-200">
+                        <h3 class="text-lg font-bold mb-2 text-purple-700">Payment Management</h3>
+                        <p>Fee collection, payment tracking, and financial reporting system.</p>
+                    </div>
+                    <div class="feature-item-card bg-white/80 backdrop-blur-sm border-purple-200">
+                        <h3 class="text-lg font-bold mb-2 text-purple-700">Parent Portal</h3>
+                        <p>Dedicated portal for parents to monitor their child's academic progress.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -127,8 +221,13 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8 sm:py-12">
         <div class="container mx-auto px-4 sm:px-6 text-center">
-            <div class="text-xl sm:text-2xl font-bold mb-4">DazzloCore X</div>
-            <p class="text-gray-400 mb-4 text-sm sm:text-base">Empowering educational institutes with cutting-edge technology.</p>
+            <div class="text-xl sm:text-2xl font-bold mb-4">Ambivare</div>
+            <p class="text-gray-400 mb-4 text-sm sm:text-base">Empowering Educators, Inspiring Students</p>
+            <div class="text-sm text-gray-500 mb-4">
+                <p><i class="fas fa-envelope mr-2"></i>info@ambivare.com | sales@ambivare.com</p>
+                <p><i class="fas fa-phone mr-2"></i>+91 9373015503</p>
+                <p><i class="fas fa-map-marker-alt mr-2"></i>Kalyan, Maharashtra</p>
+            </div>
             <div class="flex justify-center space-x-6 text-gray-400">
                 <a href="./features.html" class="hover:text-white transition-colors text-sm sm:text-base">Features</a>
                 <a href="./about.html" class="hover:text-white transition-colors text-sm sm:text-base">About</a>

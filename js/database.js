@@ -192,7 +192,20 @@ class LocalDatabase {
         const index = users.findIndex(user => user.id === userId);
         if (index !== -1) {
             users[index] = { ...users[index], ...updatedData };
-            return this.setData(userType, users);
+            const result = this.setData(userType, users);
+            
+            // Force a localStorage sync to ensure data persistence
+            try {
+                localStorage.setItem(userType, JSON.stringify(users));
+                // Trigger a custom event to notify other parts of the app
+                window.dispatchEvent(new CustomEvent('userUpdated', { 
+                    detail: { userType, userId, updatedData } 
+                }));
+            } catch (error) {
+                console.error('Error updating user:', error);
+            }
+            
+            return result;
         }
         return false;
     }
@@ -775,6 +788,18 @@ class LocalDatabase {
         if (index !== -1) {
             classes[index] = { ...classes[index], ...updatedData };
             this.setData('classes', classes);
+            
+            // Force a localStorage sync to ensure data persistence
+            try {
+                localStorage.setItem('classes', JSON.stringify(classes));
+                // Trigger a custom event to notify other parts of the app
+                window.dispatchEvent(new CustomEvent('classesUpdated', { 
+                    detail: { classId, updatedData } 
+                }));
+            } catch (error) {
+                console.error('Error updating class:', error);
+            }
+            
             return true;
         }
         return false;

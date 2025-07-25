@@ -2445,4 +2445,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('teacher_portal.html')) {
         initializeTeacherPortal();
     }
+    
+    // Listen for data update events to refresh UI
+    window.addEventListener('classesUpdated', function(event) {
+        console.log('Classes updated, refreshing UI...');
+        if (window.portalManager) {
+            window.portalManager.loadClasses();
+        }
+        updateDashboardStats();
+    });
+
+    window.addEventListener('userUpdated', function(event) {
+        console.log('User updated, refreshing UI...');
+        if (window.portalManager) {
+            window.portalManager.loadTeachers();
+            window.portalManager.loadStudents();
+        }
+        updateDashboardStats();
+    });
 }); 

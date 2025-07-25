@@ -7,6 +7,18 @@ body {
     font-family: 'Inter', sans-serif; 
     background-color: #f8fafc; 
     color: #1f2937; 
+    line-height: 1.6;
+}
+
+/* Enhanced Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    transition: all 0.2s ease-in-out;
 }
 
 /* Header Styles */
@@ -21,27 +33,45 @@ body {
 
 /* Hero Section */
 .hero-section { 
-    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); 
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%); 
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
 }
 
 /* Card Styles */
 .login-card { 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
     border: 1px solid #e2e8f0; 
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
 }
 
 .login-card:hover { 
-    transform: translateY(-10px); 
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); 
-}
+    transform: translateY(-8px) scale(1.02); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1); 
+    border-color: #3b82f6;
+} 
 
 .feature-card, .testimonial-card { 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
 }
 
 .feature-card:hover, .testimonial-card:hover { 
-    transform: translateY(-5px); 
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07); 
+    transform: translateY(-6px) scale(1.01); 
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); 
 }
 
 /* Animation Classes */
@@ -153,16 +183,37 @@ body {
 }
 
 .feature-item-card {
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.95);
     border: 1px solid #e5e7eb;
-    border-radius: 0.75rem;
+    border-radius: 1rem;
     padding: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-item-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
 
 .feature-item-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #3b82f6;
+}
+
+.feature-item-card:hover::before {
+    transform: scaleX(1);
 }
 
 .value-card {
