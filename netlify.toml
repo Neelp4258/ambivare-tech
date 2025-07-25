@@ -2,9 +2,6 @@
   publish = "."
   command = "echo 'Static site - no build required'"
 
-[build.environment]
-  NODE_VERSION = "20.11.0"
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
