@@ -1,0 +1,10 @@
+# Ambivare Man Comic PDF
+
+This is a placeholder file for the Ambivare Man comic PDF.
+
+To complete this feature, you need to:
+1. Replace this file with the actual Ambivare Man comic PDF
+2. The PDF should contain the comic content featuring Ambivare Man
+3. The file should be named exactly "Ambivare_Man.pdf"
+
+The download functionality is already implemented and will work once you add the actual PDF file.
