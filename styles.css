@@ -108,23 +108,39 @@
     box-sizing: border-box;
 }
 
+/* Ensure no white backgrounds on main elements */
+html, body, #root, .app {
+    background-color: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 body {
     font-family: var(--font-primary);
     line-height: 1.6;
     color: var(--text-primary);
-    background-color: var(--white);
+    background-color: transparent;
     overflow-x: hidden;
     transition: background-color var(--transition-normal), color var(--transition-normal);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     touch-action: manipulation;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 /* Theme transition styles */
@@ -139,7 +155,8 @@ body {
     }
     
     .container {
-        padding: 0 1rem;
+        padding: 0;
+        width: 100%;
     }
     
     .section-padding {
@@ -191,9 +208,10 @@ p {
 
 /* ===== CONTAINER ===== */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--container-padding);
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 /* ===== BUTTONS ===== */
@@ -545,8 +563,9 @@ p {
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
+    width: 100%;
 }
 
 .nav-logo {
@@ -772,14 +791,14 @@ p {
 @media (max-width: 768px) {
     .hero {
         min-height: 100vh;
-        padding: 6rem 1rem 2rem;
+        padding: 6rem 0 2rem;
     }
     
     .hero-content {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
-        padding: 0 1rem;
+        padding: 0;
     }
     
     .hero-text {
@@ -861,9 +880,10 @@ p {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     padding: 0 2rem;
+    width: 100%;
 }
 
 .hero-badge {
