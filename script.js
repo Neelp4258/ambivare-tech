@@ -405,9 +405,16 @@ function setTheme(theme) {
     // Add transition class for smooth theme change
     document.documentElement.classList.add('theme-transitioning');
     
+    // Set theme on both html and body elements
     document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     currentTheme = theme;
+    
+    // Force a repaint
+    document.documentElement.style.display = 'none';
+    document.documentElement.offsetHeight; // Trigger reflow
+    document.documentElement.style.display = '';
     
     // Update theme toggle button appearance
     const themeToggle = document.getElementById('themeToggle');

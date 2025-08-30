@@ -103,10 +103,14 @@
 
 /* Dark theme for all sections */
 [data-theme="dark"] .about,
+[data-theme="dark"] .about-section,
 [data-theme="dark"] .services-section,
 [data-theme="dark"] .industries-section,
 [data-theme="dark"] .success-section,
 [data-theme="dark"] .tech-section,
+[data-theme="dark"] .tech-stack,
+[data-theme="dark"] .tech-stack-section,
+[data-theme="dark"] .why-choose-section,
 [data-theme="dark"] .consultation-section,
 [data-theme="dark"] .contact-section {
     background: var(--dark-gray) !important;
@@ -117,6 +121,8 @@
 [data-theme="dark"] .industry-card,
 [data-theme="dark"] .success-card,
 [data-theme="dark"] .tech-card,
+[data-theme="dark"] .tech-item,
+[data-theme="dark"] .feature-item,
 [data-theme="dark"] .value-card,
 [data-theme="dark"] .floating-card {
     background: var(--light-gray) !important;
@@ -133,6 +139,10 @@
 [data-theme="dark"] .success-card p,
 [data-theme="dark"] .tech-card h4,
 [data-theme="dark"] .tech-card p,
+[data-theme="dark"] .tech-item,
+[data-theme="dark"] .tech-category h3,
+[data-theme="dark"] .feature-item h3,
+[data-theme="dark"] .feature-item p,
 [data-theme="dark"] .value-card h4,
 [data-theme="dark"] .value-card p,
 [data-theme="dark"] .floating-card .card-text {
@@ -1254,6 +1264,10 @@ section {
     background: var(--white);
 }
 
+.about-section {
+    background: var(--white);
+}
+
 .about h2,
 .about h3,
 .about p {
@@ -1758,6 +1772,10 @@ section {
     background: var(--light-gray);
 }
 
+.tech-stack-section {
+    background: var(--light-gray);
+}
+
 /* Mobile Tech Stack */
 @media (max-width: 768px) {
     .tech-grid {
@@ -1845,6 +1863,11 @@ section {
     position: relative;
     background: var(--gradient-primary);
     color: var(--white);
+}
+
+.why-choose-section {
+    background: var(--white);
+    padding: var(--section-padding);
 }
 
 .parallax-bg {
