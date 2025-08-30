@@ -68,6 +68,77 @@
     --golden: #fbbf24;
 }
 
+/* Dark theme specific styles for all sections */
+[data-theme="dark"] .navbar {
+    background: rgba(31, 41, 55, 0.95);
+    border-bottom: 2px solid var(--electric-purple);
+}
+
+[data-theme="dark"] .logo-container {
+    background: rgba(31, 41, 55, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .logo-primary {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .logo-secondary {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .mobile-menu-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .mobile-menu-toggle span {
+    background: var(--text-primary);
+}
+
+/* Dark theme for all sections */
+[data-theme="dark"] .about,
+[data-theme="dark"] .services-section,
+[data-theme="dark"] .industries-section,
+[data-theme="dark"] .success-section,
+[data-theme="dark"] .tech-section,
+[data-theme="dark"] .consultation-section,
+[data-theme="dark"] .contact-section {
+    background: var(--dark-gray) !important;
+}
+
+[data-theme="dark"] .stat-item,
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .industry-card,
+[data-theme="dark"] .success-card,
+[data-theme="dark"] .tech-card,
+[data-theme="dark"] .value-card,
+[data-theme="dark"] .floating-card {
+    background: var(--light-gray) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .stat-item h3,
+[data-theme="dark"] .stat-item p,
+[data-theme="dark"] .service-card h3,
+[data-theme="dark"] .service-card p,
+[data-theme="dark"] .industry-card h3,
+[data-theme="dark"] .industry-card p,
+[data-theme="dark"] .success-card h4,
+[data-theme="dark"] .success-card p,
+[data-theme="dark"] .tech-card h4,
+[data-theme="dark"] .tech-card p,
+[data-theme="dark"] .value-card h4,
+[data-theme="dark"] .value-card p,
+[data-theme="dark"] .floating-card .card-text {
+    color: var(--text-primary) !important;
+}
+
 /* Dark theme specific styles */
 [data-theme="dark"] .navbar {
     background: rgba(31, 41, 55, 0.95);
@@ -363,6 +434,11 @@ p {
 @media (max-width: 768px) {
     .navbar {
         padding: 0.75rem 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
     }
     
     .nav-container {
@@ -791,18 +867,19 @@ p {
 @media (max-width: 768px) {
     .hero {
         min-height: 100vh;
-        padding: 6rem 0 2rem;
+        padding: 8rem 1rem 2rem;
     }
     
     .hero-content {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
-        padding: 0;
+        padding: 0 1rem;
     }
     
     .hero-text {
         order: 1;
+        padding-top: 2rem;
     }
     
     .hero-visual {
@@ -811,13 +888,15 @@ p {
     }
     
     .hero-title {
-        font-size: clamp(2rem, 8vw, 3rem);
-        line-height: 1.2;
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        line-height: 1.3;
+        margin-top: 1rem;
     }
     
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;
         margin-bottom: 1.5rem;
+        line-height: 1.4;
     }
     
     .hero-stats {
