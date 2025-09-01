@@ -560,22 +560,32 @@ function initializeNavigation() {
         });
     }
     
-    // Smooth scrolling for nav links
+    // Smooth scrolling for nav links (only internal anchor links)
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
             
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            // Check if it's an internal anchor link (starts with #)
+            if (targetId.startsWith('#')) {
+                e.preventDefault();
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Close mobile menu
+                if (navMenu) {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
             }
-            
-            // Close mobile menu
-            if (navMenu) {
+            // For external links (like templates.html), let them work normally
+            // Just close mobile menu if open
+            else if (navMenu && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 mobileMenuToggle.classList.remove('active');
             }
