@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Rodriguez - Professional Photography</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="camera-icon">
+            <i class="fas fa-camera"></i>
+        </div>
+        <div class="loader-text">
+            <span>C</span><span>A</span><span>P</span><span>T</span><span>U</span><span>R</span><span>I</span><span>N</span><span>G</span>
+            <span class="dots">
+                <span>.</span><span>.</span><span>.</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-camera-retro"></i>
+                <span>Elena Rodriguez</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Capturing Life's<br><span>Beautiful Moments</span></h1>
+                <p>Professional photographer specializing in portraits, weddings, events, and artistic photography. Creating timeless memories through the lens.</p>
+                <div class="hero-buttons">
+                    <a href="#gallery" class="btn btn-primary">View Portfolio</a>
+                    <a href="#contact" class="btn btn-outline">Book Session</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="500">0</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="1200">0</div>
+                        <div class="stat-label">Photo Sessions</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="8">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-camera">
+                <div class="camera-illustration">
+                    <i class="fas fa-camera"></i>
+                    <div class="camera-flash"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Portfolio Gallery</h2>
+                <p>Explore my work across different photography styles and moments</p>
+            </div>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="portrait">Portraits</button>
+                <button class="filter-btn" data-filter="wedding">Weddings</button>
+                <button class="filter-btn" data-filter="nature">Nature</button>
+                <button class="filter-btn" data-filter="event">Events</button>
+                <button class="filter-btn" data-filter="fashion">Fashion</button>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="portrait">
+                    <div class="gallery-image">
+                        <div class="image-placeholder portrait-bg">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Portrait Session</h4>
+                                <p>Professional headshots and personal portraits</p>
+                                <div class="gallery-actions">
+                                    <button class="action-btn view-btn" data-lightbox="portrait1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="wedding">
+                    <div class="gallery-image">
+                        <div class="image-placeholder wedding-bg">
+                            <i class="fas fa-rings-wedding"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Wedding Photography</h4>
+                                <p>Capturing your special day with love and care</p>
+                                <div class="gallery-actions">
+                                    <button class="action-btn view-btn" data-lightbox="wedding1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="nature">
+                    <div class="gallery-image">
+                        <div class="image-placeholder nature-bg">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Nature Photography</h4>
+                                <p>Beautiful landscapes and wildlife moments</p>
+                                <div class="gallery-actions">
+                                    <button class="action-btn view-btn" data-lightbox="nature1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="event">
+                    <div class="gallery-image">
+                        <div class="image-placeholder event-bg">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Event Photography</h4>
+                                <p>Corporate events and special celebrations</p>
+                                <div class="gallery-actions">
+                                    <button class="action-btn view-btn" data-lightbox="event1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="fashion">
+                    <div class="gallery-image">
+                        <div class="image-placeholder fashion-bg">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Fashion Photography</h4>
+                                <p>Stylish fashion shoots and modeling</p>
+                                <div class="gallery-actions">
+                                    <button class="action-btn view-btn" data-lightbox="fashion1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="portrait">
+                    <div class="gallery-image">
+                        <div class="image-placeholder portrait-bg">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Family Portraits</h4>
+                                <p>Cherished family moments and group photos</p>
+                                <div class="gallery-actions">
+                                    <button class="action-btn view-btn" data-lightbox="portrait2">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="wedding">
+                    <div class="gallery-image">
+                        <div class="image-placeholder wedding-bg">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Engagement Session</h4>
+                                <p>Romantic engagement and couple photography</p>
+                                <div class="gallery-actions">
+                                    <button class="action-btn view-btn" data-lightbox="wedding2">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="nature">
+                    <div class="gallery-image">
+                        <div class="image-placeholder nature-bg">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Landscape Photography</h4>
+                                <p>Stunning natural landscapes and scenery</p>
+                                <div class="gallery-actions">
+                                    <button class="action-btn view-btn" data-lightbox="nature2">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="event">
+                    <div class="gallery-image">
+                        <div class="image-placeholder event-bg">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Corporate Events</h4>
+                                <p>Professional business event photography</p>
+                                <div class="gallery-actions">
+                                    <button class="action-btn view-btn" data-lightbox="event2">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-load-more">
+                <button class="btn btn-outline">Load More Photos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="photographer-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="experience-badge">
+                            <span class="badge-number">8+</span>
+                            <span class="badge-text">Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="about-decorations">
+                        <div class="decoration decoration-1">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="decoration decoration-2">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="decoration decoration-3">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <div class="section-header">
+                        <h2>About Elena</h2>
+                        <p>Passionate photographer with a story to tell</p>
+                    </div>
+                    <div class="about-description">
+                        <p>Hello! I'm Elena Rodriguez, a professional photographer based in California with over 8 years of experience capturing life's most precious moments. My passion for photography started in college and has grown into a fulfilling career helping people preserve their memories.</p>
+                        <p>I specialize in portrait photography, wedding documentation, and artistic nature photography. My approach combines technical expertise with creative vision to create images that tell your unique story. Whether it's your wedding day, a family portrait, or a corporate event, I'm committed to delivering exceptional results.</p>
+                        <p>When I'm not behind the camera, you can find me exploring new locations, experimenting with different lighting techniques, or spending time with my family. I believe that great photography comes from understanding people and creating comfortable environments where genuine emotions can shine through.</p>
+                    </div>
+                    <div class="about-skills">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Portrait Photography</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Wedding Photography</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Event Photography</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Photo Editing</span>
+                                <span class="skill-percentage">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Photography Services</h2>
+                <p>Professional photography services tailored to your needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Portrait Sessions</h3>
+                    <p>Professional headshots, family portraits, and personal photography sessions in studio or outdoor locations.</p>
+                    <ul class="service-features">
+                        <li>Professional studio lighting</li>
+                        <li>Outdoor location shoots</li>
+                        <li>High-resolution edited photos</li>
+                        <li>Same-day preview gallery</li>
+                    </ul>
+                    <div class="service-price">Starting at $200</div>
+                    <a href="#contact" class="service-btn">Book Session</a>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="service-icon">
+                        <i class="fas fa-rings-wedding"></i>
+                    </div>
+                    <h3>Wedding Photography</h3>
+                    <p>Complete wedding day coverage from preparation to reception, creating a beautiful story of your special day.</p>
+                    <ul class="service-features">
+                        <li>Full day coverage (8-12 hours)</li>
+                        <li>Engagement session included</li>
+                        <li>Online gallery for guests</li>
+                        <li>Professional editing</li>
+                        <li>USB with high-res images</li>
+                    </ul>
+                    <div class="service-price">Starting at $1,500</div>
+                    <a href="#contact" class="service-btn">Get Quote</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Event Photography</h3>
+                    <p>Corporate events, parties, and special celebrations captured with professionalism and creativity.</p>
+                    <ul class="service-features">
+                        <li>Corporate event coverage</li>
+                        <li>Party and celebration photos</li>
+                        <li>Candid and posed shots</li>
+                        <li>Quick turnaround delivery</li>
+                    </ul>
+                    <div class="service-price">Starting at $300</div>
+                    <a href="#contact" class="service-btn">Book Event</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3>Commercial Photography</h3>
+                    <p>Product photography, business headshots, and commercial imagery for your brand and marketing needs.</p>
+                    <ul class="service-features">
+                        <li>Product photography</li>
+                        <li>Business headshots</li>
+                        <li>Commercial licensing</li>
+                        <li>Brand photography</li>
+                    </ul>
+                    <div class="service-price">Starting at $400</div>
+                    <a href="#contact" class="service-btn">Discuss Project</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Photo Editing</h3>
+                    <p>Professional photo retouching and editing services to enhance your existing photographs.</p>
+                    <ul class="service-features">
+                        <li>Color correction</li>
+                        <li>Skin retouching</li>
+                        <li>Background removal</li>
+                        <li>Creative editing</li>
+                    </ul>
+                    <div class="service-price">Starting at $50</div>
+                    <a href="#contact" class="service-btn">Get Started</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Photography Lessons</h3>
+                    <p>One-on-one photography coaching and workshops to improve your photography skills and techniques.</p>
+                    <ul class="service-features">
+                        <li>One-on-one coaching</li>
+                        <li>Technical training</li>
+                        <li>Hands-on practice</li>
+                        <li>Portfolio review</li>
+                    </ul>
+                    <div class="service-price">Starting at $150</div>
+                    <a href="#contact" class="service-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Client Testimonials</h2>
+                <p>What my clients say about their photography experience</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card active">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Elena captured our wedding day beautifully! Her attention to detail and ability to make us feel comfortable resulted in stunning photos that we'll treasure forever. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h5>Sarah & Michael Johnson</h5>
+                                <span>Wedding Photography</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Professional, creative, and incredibly talented! Elena's family portraits perfectly captured our family's personality. The whole experience was enjoyable and the results exceeded our expectations."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h5>Maria Santos</h5>
+                                <span>Family Portrait Session</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Elena's work for our corporate event was outstanding. She captured all the important moments while being unobtrusive. The photos perfectly represented our company culture and values."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h5>David Thompson</h5>
+                                <span>Corporate Event</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-navigation">
+                <button class="testimonial-btn prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="testimonial-btn next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="section-header">
+                        <h2>Let's Create Together</h2>
+                        <p>Ready to capture your special moments? Let's discuss your photography needs</p>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Studio Location</h4>
+                                <p>123 Photography Lane<br>Los Angeles, CA 90210</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-FOTO<br>Available 9AM - 7PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>hello@elenarod.com<br>bookings@elenarod.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Studio Hours</h4>
+                                <p>Mon-Fri: 9:00 AM - 7:00 PM<br>Sat-Sun: By Appointment</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form">
+                        <h3>Book Your Session</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" placeholder="Email Address" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Select Service Type</option>
+                                <option value="portrait">Portrait Session</option>
+                                <option value="wedding">Wedding Photography</option>
+                                <option value="event">Event Photography</option>
+                                <option value="commercial">Commercial Photography</option>
+                                <option value="editing">Photo Editing</option>
+                                <option value="lessons">Photography Lessons</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="date" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Budget Range" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Tell me about your vision, location preferences, and any special requirements..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-camera-retro"></i>
+                        <span>Elena Rodriguez</span>
+                    </div>
+                    <p>Professional photographer capturing life's beautiful moments with creativity, passion, and technical expertise.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#services">Portrait Sessions</a></li>
+                            <li><a href="#services">Wedding Photography</a></li>
+                            <li><a href="#services">Event Photography</a></li>
+                            <li><a href="#services">Commercial Work</a></li>
+                            <li><a href="#services">Photo Editing</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Portfolio</h4>
+                        <ul>
+                            <li><a href="#gallery">All Work</a></li>
+                            <li><a href="#gallery">Portraits</a></li>
+                            <li><a href="#gallery">Weddings</a></li>
+                            <li><a href="#gallery">Nature</a></li>
+                            <li><a href="#gallery">Events</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Information</h4>
+                        <ul>
+                            <li><a href="#about">About Elena</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Client Gallery Login</a></li>
+                            <li><a href="#">Photography Tips</a></li>
+                            <li><a href="#">Session Prep Guide</a></li>
+                            <li><a href="#">Print Services</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Elena Rodriguez Photography. All rights reserved.</p>
+                <p>Creating beautiful memories, one photograph at a time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-image">
+                <div class="image-placeholder">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+            <div class="lightbox-info">
+                <h4>Photo Title</h4>
+                <p>Photo description and details</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ready-Made Templates - Ambivare Solutions</title>
+    <meta name="description" content="Explore our collection of professional website templates. Modern, responsive designs for various industries and business types.">
+    
+    <!-- External Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css?v=3">
+    
+    <!-- Templates Page Specific Styles -->
+    <style>
+        .templates-hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .templates-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .templates-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .templates-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .templates-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .template-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .template-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .template-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .template-card:hover .template-image::before {
+            transform: translateX(100%);
+        }
+        
+        .template-icon {
+            font-size: 3rem;
+            color: white;
+            z-index: 2;
+        }
+        
+        .template-content {
+            padding: 1.5rem;
+        }
+        
+        .template-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        
+        .template-description {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .template-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .template-feature {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .template-button {
+            width: 100%;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .template-button:hover {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            transform: translateY(-2px);
+        }
+        
+        .template-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1f2937;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .back-to-home {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(30, 58, 138, 0.9);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .back-to-home:hover {
+            background: rgba(30, 58, 138, 1);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .templates-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .templates-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+            
+            .back-to-home {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <button class="back-to-home" onclick="window.location.href='index.html'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+    </button>
+
+    <!-- Templates Hero Section -->
+    <section class="templates-hero">
+        <div class="templates-hero-content">
+            <h1 data-aos="fade-up">Ready-Made Templates</h1>
+            <p data-aos="fade-up" data-aos-delay="200">
+                Explore our collection of professional website templates designed for various industries and business types. 
+                Each template is fully responsive, modern, and ready for customization.
+            </p>
+        </div>
+    </section>
+
+    <!-- Templates Grid -->
+    <div class="templates-grid">
+        <!-- Modern Business Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="100" onclick="openTemplate('Samples/modern-business/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🏢</div>
+                <div class="template-category">Business</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Modern Business</h3>
+                <p class="template-description">
+                    Clean, professional corporate design perfect for technology companies, consulting firms, and modern businesses.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Responsive</span>
+                    <span class="template-feature">Professional</span>
+                    <span class="template-feature">Contact Forms</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Creative Agency Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="150" onclick="openTemplate('Samples/creative-agency/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🎨</div>
+                <div class="template-category">Creative</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Creative Agency</h3>
+                <p class="template-description">
+                    Bold, artistic design with portfolio showcase and animation effects for creative agencies and design studios.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Portfolio</span>
+                    <span class="template-feature">Animations</span>
+                    <span class="template-feature">Creative</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- E-commerce Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="200" onclick="openTemplate('Samples/ecommerce/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🛒</div>
+                <div class="template-category">E-commerce</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">E-commerce Store</h3>
+                <p class="template-description">
+                    Modern online store design with product showcase, shopping cart, and category browsing functionality.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Shopping Cart</span>
+                    <span class="template-feature">Product Filter</span>
+                    <span class="template-feature">Reviews</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Restaurant Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="250" onclick="openTemplate('Samples/restaurant/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🍽️</div>
+                <div class="template-category">Food</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Restaurant</h3>
+                <p class="template-description">
+                    Food-focused design with menu display and reservation system for restaurants and cafes.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Menu Display</span>
+                    <span class="template-feature">Reservations</span>
+                    <span class="template-feature">Food Gallery</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Salon Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="300" onclick="openTemplate('Samples/salon/index.html')">
+            <div class="template-image">
+                <div class="template-icon">💇‍♀️</div>
+                <div class="template-category">Beauty</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Beauty Salon</h3>
+                <p class="template-description">
+                    Elegant beauty salon design with service booking system and luxury aesthetic.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Booking System</span>
+                    <span class="template-feature">Team Showcase</span>
+                    <span class="template-feature">Gallery</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Photography Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="350" onclick="openTemplate('Samples/photography/index.html')">
+            <div class="template-image">
+                <div class="template-icon">📸</div>
+                <div class="template-category">Portfolio</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Photography Portfolio</h3>
+                <p class="template-description">
+                    Professional photographer portfolio with animated loading screen and lightbox image viewer.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Lightbox</span>
+                    <span class="template-feature">Gallery</span>
+                    <span class="template-feature">Animations</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Law Firm Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="400" onclick="openTemplate('Samples/law-firm/index.html')">
+            <div class="template-image">
+                <div class="template-icon">⚖️</div>
+                <div class="template-category">Legal</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Law Firm</h3>
+                <p class="template-description">
+                    Professional legal services website with attorney team showcase and practice area descriptions.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Team Showcase</span>
+                    <span class="template-feature">Practice Areas</span>
+                    <span class="template-feature">Consultation</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Consulting Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="450" onclick="openTemplate('Samples/consulting/index.html')">
+            <div class="template-image">
+                <div class="template-icon">📊</div>
+                <div class="template-category">Consulting</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Consulting Firm</h3>
+                <p class="template-description">
+                    Strategic business consulting website with service portfolio and client success case studies.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Case Studies</span>
+                    <span class="template-feature">Expertise</span>
+                    <span class="template-feature">Professional</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Fitness Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="500" onclick="openTemplate('Samples/fitness/index.html')">
+            <div class="template-image">
+                <div class="template-icon">💪</div>
+                <div class="template-category">Fitness</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Fitness Center</h3>
+                <p class="template-description">
+                    Dynamic fitness website with class schedules, trainer profiles, and membership options.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Class Schedules</span>
+                    <span class="template-feature">Trainer Profiles</span>
+                    <span class="template-feature">Membership</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Real Estate Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="550" onclick="openTemplate('Samples/real-estate/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🏠</div>
+                <div class="template-category">Real Estate</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Real Estate</h3>
+                <p class="template-description">
+                    Property listing website with search functionality and property showcase features.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Property Listings</span>
+                    <span class="template-feature">Search</span>
+                    <span class="template-feature">Gallery</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Medical Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="600" onclick="openTemplate('Samples/medical/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🏥</div>
+                <div class="template-category">Healthcare</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Medical Practice</h3>
+                <p class="template-description">
+                    Healthcare website with appointment booking and patient information sections.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Appointments</span>
+                    <span class="template-feature">Patient Info</span>
+                    <span class="template-feature">Services</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Manufacturing Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="650" onclick="openTemplate('Samples/manufacturing/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🏭</div>
+                <div class="template-category">Manufacturing</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Manufacturing</h3>
+                <p class="template-description">
+                    Industrial manufacturing website showcasing products and manufacturing capabilities.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Product Showcase</span>
+                    <span class="template-feature">Capabilities</span>
+                    <span class="template-feature">Industrial</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Clothing Brand Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="700" onclick="openTemplate('Samples/clothing-brand/index.html')">
+            <div class="template-image">
+                <div class="template-icon">👕</div>
+                <div class="template-category">Fashion</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Clothing Brand</h3>
+                <p class="template-description">
+                    Fashion brand website with product catalog and modern shopping experience.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Product Catalog</span>
+                    <span class="template-feature">Fashion</span>
+                    <span class="template-feature">Modern</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Cake Store Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="750" onclick="openTemplate('Samples/cake-store/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🎂</div>
+                <div class="template-category">Food</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Cake Store</h3>
+                <p class="template-description">
+                    Sweet bakery website with cake catalog and ordering system for custom cakes.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Cake Catalog</span>
+                    <span class="template-feature">Custom Orders</span>
+                    <span class="template-feature">Sweet</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Portfolio Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="800" onclick="openTemplate('Samples/portfolio/index.html')">
+            <div class="template-image">
+                <div class="template-icon">📁</div>
+                <div class="template-category">Portfolio</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Portfolio</h3>
+                <p class="template-description">
+                    Personal portfolio website with project showcase and professional presentation.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Project Showcase</span>
+                    <span class="template-feature">Personal</span>
+                    <span class="template-feature">Professional</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Influencer Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="850" onclick="openTemplate('Samples/influencer/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🌟</div>
+                <div class="template-category">Influencer</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Social Media Influencer</h3>
+                <p class="template-description">
+                    Personal brand showcase with content portfolio and brand partnership section.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Content Portfolio</span>
+                    <span class="template-feature">Brand Partnerships</span>
+                    <span class="template-feature">Social Media</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- HR Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="900" onclick="openTemplate('Samples/HR/index.html')">
+            <div class="template-image">
+                <div class="template-icon">👥</div>
+                <div class="template-category">HR</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">HR Management</h3>
+                <p class="template-description">
+                    Human resources management system with employee portal and HR tools.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Employee Portal</span>
+                    <span class="template-feature">HR Tools</span>
+                    <span class="template-feature">Management</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Divine Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="950" onclick="openTemplate('Samples/Divine/index.html')">
+            <div class="template-image">
+                <div class="template-icon">✨</div>
+                <div class="template-category">Spiritual</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Divine</h3>
+                <p class="template-description">
+                    Spiritual and wellness website with meditation guides and healing services.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Meditation</span>
+                    <span class="template-feature">Wellness</span>
+                    <span class="template-feature">Spiritual</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Supply Chain Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="1000" onclick="openTemplate('Samples/Supply Chain/index.html')">
+            <div class="template-image">
+                <div class="template-icon">📦</div>
+                <div class="template-category">Logistics</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Supply Chain</h3>
+                <p class="template-description">
+                    Logistics and supply chain management dashboard with tracking and analytics.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Tracking</span>
+                    <span class="template-feature">Analytics</span>
+                    <span class="template-feature">Dashboard</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Social Media Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="1050" onclick="openTemplate('Samples/Social Media/index.html')">
+            <div class="template-image">
+                <div class="template-icon">📱</div>
+                <div class="template-category">Social</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Social Media</h3>
+                <p class="template-description">
+                    Social media management platform with content scheduling and analytics.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Content Scheduling</span>
+                    <span class="template-feature">Analytics</span>
+                    <span class="template-feature">Management</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Business Automations Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="1100" onclick="openTemplate('Samples/Business Automations/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🤖</div>
+                <div class="template-category">Automation</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Business Automations</h3>
+                <p class="template-description">
+                    Business process automation platform with workflow management and integrations.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Workflow</span>
+                    <span class="template-feature">Integrations</span>
+                    <span class="template-feature">Automation</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Ed Tech Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="1150" onclick="openTemplate('Samples/Ed tech/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🎓</div>
+                <div class="template-category">Education</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Ed Tech</h3>
+                <p class="template-description">
+                    Educational technology platform with course management and learning tools.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Course Management</span>
+                    <span class="template-feature">Learning Tools</span>
+                    <span class="template-feature">Education</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Healthcare Dashboard Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="1200" onclick="openTemplate('Samples/Healthcare dashboard/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🏥</div>
+                <div class="template-category">Healthcare</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Healthcare Dashboard</h3>
+                <p class="template-description">
+                    Healthcare management dashboard with patient data and medical analytics.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Patient Data</span>
+                    <span class="template-feature">Medical Analytics</span>
+                    <span class="template-feature">Dashboard</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Fintech Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="1250" onclick="openTemplate('Samples/Fintech/index.html')">
+            <div class="template-image">
+                <div class="template-icon">💰</div>
+                <div class="template-category">Finance</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Fintech</h3>
+                <p class="template-description">
+                    Financial technology platform with banking features and payment processing.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Banking</span>
+                    <span class="template-feature">Payments</span>
+                    <span class="template-feature">Finance</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Ambi Commerce Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="1300" onclick="openTemplate('Samples/Ambi commerce/index.html')">
+            <div class="template-image">
+                <div class="template-icon">🛍️</div>
+                <div class="template-category">Commerce</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Ambi Commerce</h3>
+                <p class="template-description">
+                    Advanced e-commerce platform with comprehensive shopping features and management tools.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Advanced Shopping</span>
+                    <span class="template-feature">Management</span>
+                    <span class="template-feature">Commerce</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Ambivare BI Template -->
+        <div class="template-card" data-aos="fade-up" data-aos-delay="1350" onclick="openTemplate('Samples/Ambivare BI/index.html')">
+            <div class="template-image">
+                <div class="template-icon">📊</div>
+                <div class="template-category">Analytics</div>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Ambivare BI</h3>
+                <p class="template-description">
+                    Business intelligence dashboard with data visualization and reporting tools.
+                </p>
+                <div class="template-features">
+                    <span class="template-feature">Data Visualization</span>
+                    <span class="template-feature">Reporting</span>
+                    <span class="template-feature">Analytics</span>
+                </div>
+                <button class="template-button">
+                    View Template
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Function to open template in new tab
+        function openTemplate(url) {
+            window.open(url, '_blank');
+        }
+
+        // Add click event listeners to all template cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const templateCards = document.querySelectorAll('.template-card');
+            templateCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const url = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    openTemplate(url);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

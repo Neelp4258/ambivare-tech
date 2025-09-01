@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopHub - Modern E-commerce Template</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>ShopHub</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="#categories" class="nav-link">Categories</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="user-btn"><i class="fas fa-user"></i></button>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover Amazing Products</h1>
+                <p class="hero-subtitle">Shop the latest trends with unbeatable prices and fast delivery</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">Shop Now</a>
+                    <a href="#categories" class="btn btn-outline">Browse Categories</a>
+                </div>
+                <div class="hero-features">
+                    <div class="feature">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Free Shipping</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-undo"></i>
+                        <span>Easy Returns</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Payment</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-placeholder">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Shop by Category</h2>
+                <p>Find exactly what you're looking for</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Fashion</h3>
+                    <p>Latest trends and styles</p>
+                    <span class="item-count">250+ items</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Electronics</h3>
+                    <p>Tech gadgets and devices</p>
+                    <span class="item-count">180+ items</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home & Garden</h3>
+                    <p>Decor and essentials</p>
+                    <span class="item-count">320+ items</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Sports</h3>
+                    <p>Fitness and outdoor gear</p>
+                    <span class="item-count">150+ items</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Books</h3>
+                    <p>Knowledge and entertainment</p>
+                    <span class="item-count">500+ items</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gaming</h3>
+                    <p>Games and accessories</p>
+                    <span class="item-count">120+ items</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Products</h2>
+                <p>Handpicked items just for you</p>
+            </div>
+            
+            <div class="product-filters">
+                <button class="filter-btn active" data-filter="all">All Products</button>
+                <button class="filter-btn" data-filter="bestseller">Best Sellers</button>
+                <button class="filter-btn" data-filter="new">New Arrivals</button>
+                <button class="filter-btn" data-filter="sale">On Sale</button>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card" data-category="bestseller">
+                    <div class="product-image">
+                        <div class="product-placeholder">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <div class="product-badges">
+                            <span class="badge bestseller">Best Seller</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Cotton T-Shirt</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(124)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$29.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="1">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="new">
+                    <div class="product-image">
+                        <div class="product-placeholder">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Wireless Headphones</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-count">(89)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$79.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="2">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="sale">
+                    <div class="product-image">
+                        <div class="product-placeholder">
+                            <i class="fas fa-watch"></i>
+                        </div>
+                        <div class="product-badges">
+                            <span class="badge sale">-30%</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Smart Watch Pro</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(256)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$199.99</span>
+                            <span class="original-price">$299.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="3">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="bestseller">
+                    <div class="product-image">
+                        <div class="product-placeholder">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="product-badges">
+                            <span class="badge bestseller">Best Seller</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Smartphone Case</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-count">(67)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$19.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="4">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="new">
+                    <div class="product-image">
+                        <div class="product-placeholder">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Digital Camera</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(43)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$399.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="5">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="sale">
+                    <div class="product-image">
+                        <div class="product-placeholder">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="product-badges">
+                            <span class="badge sale">-25%</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Running Shoes</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-count">(178)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$89.99</span>
+                            <span class="original-price">$119.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="6">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Why Choose ShopHub?</h2>
+                    <p>We're committed to providing you with the best shopping experience possible.</p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Quality Guaranteed</h4>
+                                <p>All products are carefully selected and quality tested</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shipping-fast"></i>
+                            <div>
+                                <h4>Fast Delivery</h4>
+                                <p>Free shipping on orders over $50 with 2-day delivery</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <h4>24/7 Support</h4>
+                                <p>Our customer service team is always here to help</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-undo"></i>
+                            <div>
+                                <h4>Easy Returns</h4>
+                                <p>30-day return policy with no questions asked</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <h3>10K+</h3>
+                        <p>Happy Customers</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>1M+</h3>
+                        <p>Products Sold</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>99%</h3>
+                        <p>Satisfaction Rate</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>24/7</h3>
+                        <p>Customer Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for exclusive deals and new arrivals</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions? We'd love to hear from you.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>123 Shopping Street<br>Commerce City, CC 12345</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>support@shophub.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopHub</h3>
+                    <p>Your one-stop destination for quality products at unbeatable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Sports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ShopHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: $<span id="cartTotal">0.00</span></span>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

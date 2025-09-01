@@ -1,0 +1,9 @@
+body { font-family: 'Montserrat', Arial, sans-serif; margin: 0; background: #f8f8f8; color: #222; }
+header { background: #111; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+nav a { color: #ffd600; margin-left: 1.5rem; text-decoration: none; font-weight: bold; }
+.hero { background: #ffd600; color: #111; padding: 3rem 2rem; text-align: center; }
+section { margin: 2rem auto; max-width: 700px; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.product { background: #f3f3f3; padding: 1rem; border-radius: 6px; margin-bottom: 1rem; }
+form { display: flex; flex-direction: column; gap: 1rem; }
+input, textarea { padding: 0.7rem; border: 1px solid #b0b8c1; border-radius: 4px; }
+button { background: #111; color: #ffd600; border: none; padding: 0.8rem; border-radius: 4px; cursor: pointer; font-weight: bold; } 

@@ -138,6 +138,13 @@
             background: #1f2937 !important;
             color: #f9fafb !important;
         }
+        
+        /* Templates button hover effect */
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2) !important;
+        }
     </style>
 </head>
 <body>
@@ -192,6 +199,12 @@
                     </a>
                 </div>
                 <div class="nav-item">
+                    <a href="templates.html" class="nav-link">
+                        <span class="nav-icon">🎨</span>
+                        <span class="nav-text">Templates</span>
+                    </a>
+                </div>
+                <div class="nav-item">
                     <a href="#industries" class="nav-link" data-section="industries">
                         <span class="nav-icon">🏢</span>
                         <span class="nav-text">Industries</span>
@@ -225,7 +238,7 @@
                     </a>
                 </div>
                 
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" onclick="toggleTheme()">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" tabindex="0">
                     <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -286,8 +299,8 @@
                 </div>
                 
                 <div class="hero-cta">
-                    <button class="btn btn-primary btn-3d" onclick="scrollToSection('contact')">
-                        <span class="btn-text">Schedule Free Consultation</span>
+                    <button class="btn btn-primary btn-3d" onclick="openConsultationForm()">
+                        <span class="btn-text">Build with Ambivare</span>
                         <div class="btn-glow"></div>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -303,6 +316,12 @@
                             <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
                     </button>
+                    <a href="templates.html" class="btn btn-outline btn-3d" style="display:inline-flex; align-items:center; gap:8px; padding:12px 20px; background:transparent; color:#fff; font-weight:bold; border:2px solid #fff; border-radius:8px; text-decoration:none; transition:all 0.3s ease;">
+                        <span>🎨 View Templates</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
                     <a href="https://ambivare.com/Ambivare_man.pdf" download="Ambivare_Man.pdf" 
                        onclick="downloadComicAndOpenSite(event)"
                        style="display:inline-block; padding:12px 20px; background:#FF6600; color:#fff; font-weight:bold; border-radius:8px; text-decoration:none;">
@@ -913,8 +932,8 @@
                 <p>Join the elite companies that trust Ambivare Solutions for their digital transformation</p>
                 
                 <div class="cta-buttons">
-                    <button class="btn btn-primary btn-3d" onclick="scrollToSection('consultation')">
-                        <span class="btn-text">Book a Consultation</span>
+                    <button class="btn btn-primary btn-3d" onclick="openConsultationForm()">
+                        <span class="btn-text">Build with Ambivare</span>
                         <div class="btn-glow"></div>
                     </button>
                     <button class="btn btn-secondary btn-3d" onclick="downloadProfile()">
@@ -1071,6 +1090,16 @@
                 </div>
                 
                 <div class="footer-section">
+                    <h3>Templates</h3>
+                    <ul>
+                        <li><a href="templates.html">Ready-Made Templates</a></li>
+                        <li><a href="templates.html">Business Templates</a></li>
+                        <li><a href="templates.html">E-commerce Templates</a></li>
+                        <li><a href="templates.html">Portfolio Templates</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
                     <h3>Company</h3>
                     <ul>
                         <li><a href="#about">About Us</a></li>
@@ -1122,6 +1151,201 @@
                 <input type="text" id="chatbotInput" placeholder="Type your message...">
                 <button aria-label="Send message">Send</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Consultation Form Modal -->
+    <div id="consultationModal" class="consultation-modal">
+        <div class="modal-overlay" onclick="closeConsultationForm()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Build with Ambivare</h2>
+                <p>Tell us about your project and let's create something amazing together</p>
+                <button class="modal-close" onclick="closeConsultationForm()">×</button>
+            </div>
+            
+            <form id="buildWithAmbivareForm" class="consultation-form-modal" onsubmit="handleBuildWithAmbivareSubmit(event)">
+                <div class="form-section">
+                    <h3>Basic Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="projectName" name="projectName" required>
+                            <label for="projectName">Project Name *</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="clientName" name="clientName" required>
+                            <label for="clientName">Your Name *</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="email" id="clientEmail" name="clientEmail" required>
+                            <label for="clientEmail">Email Address *</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="clientPhone" name="clientPhone" required>
+                            <label for="clientPhone">Phone Number *</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="companyName" name="companyName" required>
+                        <label for="companyName">Company/Organization *</label>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Project Details</h3>
+                    <div class="form-group">
+                        <select id="projectType" name="projectType" required>
+                            <option value="">Select Project Type *</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="mobile-app">Mobile App Development</option>
+                            <option value="ecommerce">E-commerce Platform</option>
+                            <option value="ai-automation">AI & Automation</option>
+                            <option value="cloud-services">Cloud Services</option>
+                            <option value="cybersecurity">Cybersecurity</option>
+                            <option value="data-analytics">Data Analytics</option>
+                            <option value="digital-marketing">Digital Marketing</option>
+                            <option value="consulting">IT Consulting</option>
+                            <option value="custom">Custom Solution</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="projectDescription" name="projectDescription" rows="4" required placeholder="Describe your project vision, goals, and requirements..."></textarea>
+                        <label for="projectDescription">Project Description *</label>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select id="projectBudget" name="projectBudget" required>
+                                <option value="">Budget Range *</option>
+                                <option value="under-50k">Under ₹50,000</option>
+                                <option value="50k-2lakh">₹50,000 - ₹2 Lakh</option>
+                                <option value="2lakh-5lakh">₹2 Lakh - ₹5 Lakh</option>
+                                <option value="5lakh-10lakh">₹5 Lakh - ₹10 Lakh</option>
+                                <option value="10lakh-25lakh">₹10 Lakh - ₹25 Lakh</option>
+                                <option value="above-25lakh">Above ₹25 Lakh</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="projectTimeline" name="projectTimeline" required>
+                                <option value="">Timeline *</option>
+                                <option value="1-2months">1-2 Months</option>
+                                <option value="3-6months">3-6 Months</option>
+                                <option value="6-12months">6-12 Months</option>
+                                <option value="above-12months">Above 12 Months</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Technical Requirements</h3>
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">Technologies of Interest:</label>
+                            <div class="checkbox-grid">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tech-react" name="technologies" value="react">
+                                    <label for="tech-react">React/Next.js</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tech-vue" name="technologies" value="vue">
+                                    <label for="tech-vue">Vue.js</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tech-angular" name="technologies" value="angular">
+                                    <label for="tech-angular">Angular</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tech-node" name="technologies" value="node">
+                                    <label for="tech-node">Node.js</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tech-python" name="technologies" value="python">
+                                    <label for="tech-python">Python</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tech-ai" name="technologies" value="ai">
+                                    <label for="tech-ai">AI/ML</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tech-cloud" name="technologies" value="cloud">
+                                    <label for="tech-cloud">Cloud (AWS/Azure)</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tech-mobile" name="technologies" value="mobile">
+                                    <label for="tech-mobile">Mobile (Flutter/React Native)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="technicalRequirements" name="technicalRequirements" rows="3" placeholder="Any specific technical requirements, integrations, or third-party services needed..."></textarea>
+                        <label for="technicalRequirements">Technical Requirements</label>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Business Context</h3>
+                    <div class="form-group">
+                        <select id="industry" name="industry" required>
+                            <option value="">Select Industry *</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="fintech">FinTech</option>
+                            <option value="education">Education</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="real-estate">Real Estate</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="logistics">Logistics</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="businessGoals" name="businessGoals" rows="3" placeholder="What are your main business goals with this project? (e.g., increase revenue, improve efficiency, expand market reach...)" required></textarea>
+                        <label for="businessGoals">Business Goals *</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="targetAudience" name="targetAudience" rows="2" placeholder="Who is your target audience or end users?"></textarea>
+                        <label for="targetAudience">Target Audience</label>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Additional Information</h3>
+                    <div class="form-group">
+                        <textarea id="additionalInfo" name="additionalInfo" rows="3" placeholder="Any additional information, constraints, or special requirements..."></textarea>
+                        <label for="additionalInfo">Additional Information</label>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="ndaRequired" name="ndaRequired">
+                        <label for="ndaRequired">NDA Required</label>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="agreement" name="agreement" required>
+                        <label for="agreement">
+                            I agree to receive project consultation and communications from Ambivare Solutions *
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeConsultationForm()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-3d">
+                        <span class="btn-text">Submit Project Request</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 

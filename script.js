@@ -371,31 +371,46 @@ function initializeAOS() {
 
 // ===== THEME MANAGEMENT =====
 function initializeTheme() {
-    const themeToggle = document.getElementById('themeToggle');
-    console.log('Theme toggle found:', !!themeToggle);
+    console.log('Initializing theme system');
     
+    // Set initial theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    
+    // Add event listeners for theme toggle
+    const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-        // Initialize theme on page load
-        setTheme(currentTheme);
+        console.log('Theme toggle button found, adding event listeners');
         
-        // Add click event listener
+        // Remove existing onclick attribute and add proper event listener
+        themeToggle.removeAttribute('onclick');
+        
+        // Add multiple event listeners for better compatibility
         themeToggle.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log('Theme toggle clicked, current theme:', currentTheme);
+            console.log('Theme toggle clicked');
             toggleTheme();
         });
         
-        // Add touch events for mobile
         themeToggle.addEventListener('touchstart', (e) => {
             e.preventDefault();
-            console.log('Theme toggle touched, current theme:', currentTheme);
+            console.log('Theme toggle touched');
             toggleTheme();
         });
         
-        console.log('Theme toggle initialized with theme:', currentTheme);
+        // Add keyboard support
+        themeToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                console.log('Theme toggle activated via keyboard');
+                toggleTheme();
+            }
+        });
+        
+        console.log('Theme toggle event listeners added');
     } else {
-        console.error('Theme toggle not found');
+        console.error('Theme toggle button not found');
     }
 }
 
@@ -446,8 +461,27 @@ function setTheme(theme) {
 function toggleTheme() {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     console.log('Toggling theme from', currentTheme, 'to', newTheme);
+    
+    // Add immediate visual feedback
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            themeToggle.style.transform = '';
+        }, 200);
+    }
+    
     setTheme(newTheme);
 }
+
+// Add global function for onclick
+function toggleThemeGlobal() {
+    console.log('Global toggle theme called');
+    toggleTheme();
+}
+
+// Make function globally available
+window.toggleTheme = toggleThemeGlobal;
 
 // ===== NAVIGATION =====
 function initializeNavigation() {
@@ -1119,3 +1153,96 @@ function toggleThemeGlobal() {
 }
 
 window.toggleTheme = toggleThemeGlobal;
+
+// ===== CONSULTATION FORM FUNCTIONS =====
+function openConsultationForm() {
+    const modal = document.getElementById('consultationModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus on first input
+        setTimeout(() => {
+            const firstInput = modal.querySelector('input, select, textarea');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        }, 300);
+    }
+}
+
+function closeConsultationForm() {
+    const modal = document.getElementById('consultationModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        
+        // Reset form
+        const form = document.getElementById('buildWithAmbivareForm');
+        if (form) {
+            form.reset();
+        }
+    }
+}
+
+function handleBuildWithAmbivareSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    
+    // Collect form data
+    const projectData = {
+        projectName: formData.get('projectName'),
+        clientName: formData.get('clientName'),
+        clientEmail: formData.get('clientEmail'),
+        clientPhone: formData.get('clientPhone'),
+        companyName: formData.get('companyName'),
+        projectType: formData.get('projectType'),
+        projectDescription: formData.get('projectDescription'),
+        projectBudget: formData.get('projectBudget'),
+        projectTimeline: formData.get('projectTimeline'),
+        industry: formData.get('industry'),
+        businessGoals: formData.get('businessGoals'),
+        targetAudience: formData.get('targetAudience'),
+        technicalRequirements: formData.get('technicalRequirements'),
+        additionalInfo: formData.get('additionalInfo'),
+        ndaRequired: formData.get('ndaRequired') === 'on',
+        technologies: formData.getAll('technologies'),
+        agreement: formData.get('agreement') === 'on',
+        submittedAt: new Date().toISOString()
+    };
+    
+    // Show loading state
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+    submitButton.innerHTML = '<span class="btn-text">Submitting...</span><div class="btn-glow"></div>';
+    submitButton.disabled = true;
+    
+    // Simulate form submission (replace with actual API call)
+    setTimeout(() => {
+        // Success notification
+        showNotification('Project request submitted successfully! We\'ll get back to you within 24 hours.', 'success');
+        
+        // Reset form and close modal
+        form.reset();
+        closeConsultationForm();
+        
+        // Reset button
+        submitButton.innerHTML = originalText;
+        submitButton.disabled = false;
+        
+        // Log project data (for development - remove in production)
+        console.log('Project Request Data:', projectData);
+        
+        // Here you would typically send the data to your backend
+        // Example: sendProjectRequest(projectData);
+        
+    }, 2000);
+}
+
+// Export consultation form functions
+window.openConsultationForm = openConsultationForm;
+window.closeConsultationForm = closeConsultationForm;
+window.handleBuildWithAmbivareSubmit = handleBuildWithAmbivareSubmit;
+

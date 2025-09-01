@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone Gym - Transform Your Body, Transform Your Life</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-content">
+            <i class="fas fa-dumbbell"></i>
+            <h3>Loading FitZone</h3>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-dumbbell"></i>
+                <span>FitZone</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#programs" class="nav-link">Programs</a></li>
+                <li><a href="#trainers" class="nav-link">Trainers</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                <li><a href="#classes" class="nav-link">Classes</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#membership" class="nav-link cta-btn">Join Now</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Transform Your Body,<br><span>Transform Your Life</span></h1>
+                <p>Join FitZone and discover the strongest version of yourself with our world-class equipment, expert trainers, and proven workout programs.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="5000">0</h3>
+                        <p>Happy Members</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="15">0</h3>
+                        <p>Expert Trainers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="50">0</h3>
+                        <p>Workout Programs</p>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#membership" class="btn btn-primary">Start Your Journey</a>
+                    <a href="#programs" class="btn btn-outline">View Programs</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-icons">
+                    <i class="fas fa-dumbbell icon-1"></i>
+                    <i class="fas fa-heart icon-2"></i>
+                    <i class="fas fa-fire icon-3"></i>
+                    <i class="fas fa-trophy icon-4"></i>
+                </div>
+                <div class="hero-placeholder">
+                    <i class="fas fa-running"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="programs">
+        <div class="container">
+            <div class="section-header">
+                <h2>Workout Programs</h2>
+                <p>Choose from our diverse range of programs designed to meet your fitness goals</p>
+            </div>
+            
+            <div class="program-filters">
+                <button class="filter-btn active" data-filter="all">All Programs</button>
+                <button class="filter-btn" data-filter="strength">Strength</button>
+                <button class="filter-btn" data-filter="cardio">Cardio</button>
+                <button class="filter-btn" data-filter="yoga">Yoga</button>
+                <button class="filter-btn" data-filter="hiit">HIIT</button>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-card" data-category="strength">
+                    <div class="program-image">
+                        <i class="fas fa-dumbbell"></i>
+                        <div class="program-overlay">
+                            <div class="program-details">
+                                <span class="duration">60 min</span>
+                                <span class="difficulty">Advanced</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-content">
+                        <h3>Strength Training</h3>
+                        <p>Build muscle mass and increase your overall strength with our comprehensive weight training program.</p>
+                        <div class="program-features">
+                            <span><i class="fas fa-check"></i> Personal Trainer</span>
+                            <span><i class="fas fa-check"></i> Custom Diet Plan</span>
+                            <span><i class="fas fa-check"></i> Progress Tracking</span>
+                        </div>
+                        <div class="program-footer">
+                            <span class="price">$89/month</span>
+                            <button class="btn btn-sm">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card" data-category="cardio">
+                    <div class="program-image">
+                        <i class="fas fa-running"></i>
+                        <div class="program-overlay">
+                            <div class="program-details">
+                                <span class="duration">45 min</span>
+                                <span class="difficulty">Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-content">
+                        <h3>Cardio Blast</h3>
+                        <p>Burn calories and improve cardiovascular health with high-energy cardio workouts.</p>
+                        <div class="program-features">
+                            <span><i class="fas fa-check"></i> Heart Rate Monitoring</span>
+                            <span><i class="fas fa-check"></i> Calorie Tracking</span>
+                            <span><i class="fas fa-check"></i> Group Classes</span>
+                        </div>
+                        <div class="program-footer">
+                            <span class="price">$69/month</span>
+                            <button class="btn btn-sm">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card" data-category="yoga">
+                    <div class="program-image">
+                        <i class="fas fa-leaf"></i>
+                        <div class="program-overlay">
+                            <div class="program-details">
+                                <span class="duration">75 min</span>
+                                <span class="difficulty">Beginner</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-content">
+                        <h3>Yoga & Wellness</h3>
+                        <p>Find inner peace and flexibility through our mindful yoga and meditation sessions.</p>
+                        <div class="program-features">
+                            <span><i class="fas fa-check"></i> Meditation Sessions</span>
+                            <span><i class="fas fa-check"></i> Flexibility Training</span>
+                            <span><i class="fas fa-check"></i> Stress Relief</span>
+                        </div>
+                        <div class="program-footer">
+                            <span class="price">$59/month</span>
+                            <button class="btn btn-sm">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card" data-category="hiit">
+                    <div class="program-image">
+                        <i class="fas fa-fire"></i>
+                        <div class="program-overlay">
+                            <div class="program-details">
+                                <span class="duration">30 min</span>
+                                <span class="difficulty">Advanced</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-content">
+                        <h3>HIIT Bootcamp</h3>
+                        <p>High-intensity interval training for maximum results in minimum time.</p>
+                        <div class="program-features">
+                            <span><i class="fas fa-check"></i> Quick Results</span>
+                            <span><i class="fas fa-check"></i> Fat Burning</span>
+                            <span><i class="fas fa-check"></i> Metabolic Boost</span>
+                        </div>
+                        <div class="program-footer">
+                            <span class="price">$79/month</span>
+                            <button class="btn btn-sm">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="trainers">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Expert Trainers</h2>
+                <p>Our certified professionals are here to guide you every step of the way</p>
+            </div>
+            
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <div class="trainer-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="trainer-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Mike Johnson</h3>
+                        <p class="trainer-specialty">Strength & Conditioning Coach</p>
+                        <div class="trainer-stats">
+                            <span><i class="fas fa-trophy"></i> 8 Years Experience</span>
+                            <span><i class="fas fa-certificate"></i> NASM Certified</span>
+                        </div>
+                        <p class="trainer-bio">Specializes in powerlifting and muscle building with a proven track record of transforming clients.</p>
+                        <button class="btn btn-outline btn-sm">Book Session</button>
+                    </div>
+                </div>
+
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <div class="trainer-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="trainer-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Sarah Williams</h3>
+                        <p class="trainer-specialty">Yoga & Wellness Instructor</p>
+                        <div class="trainer-stats">
+                            <span><i class="fas fa-trophy"></i> 6 Years Experience</span>
+                            <span><i class="fas fa-certificate"></i> RYT-500 Certified</span>
+                        </div>
+                        <p class="trainer-bio">Expert in Hatha and Vinyasa yoga, helping clients achieve mental and physical balance.</p>
+                        <button class="btn btn-outline btn-sm">Book Session</button>
+                    </div>
+                </div>
+
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <div class="trainer-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="trainer-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>David Chen</h3>
+                        <p class="trainer-specialty">HIIT & Cardio Specialist</p>
+                        <div class="trainer-stats">
+                            <span><i class="fas fa-trophy"></i> 5 Years Experience</span>
+                            <span><i class="fas fa-certificate"></i> ACSM Certified</span>
+                        </div>
+                        <p class="trainer-bio">High-energy trainer focused on fat loss and cardiovascular conditioning programs.</p>
+                        <button class="btn btn-outline btn-sm">Book Session</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Schedule -->
+    <section id="classes" class="classes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Class Schedule</h2>
+                <p>Join our group fitness classes and train with like-minded individuals</p>
+            </div>
+            
+            <div class="schedule-container">
+                <div class="schedule-nav">
+                    <button class="schedule-btn active" data-day="monday">Monday</button>
+                    <button class="schedule-btn" data-day="tuesday">Tuesday</button>
+                    <button class="schedule-btn" data-day="wednesday">Wednesday</button>
+                    <button class="schedule-btn" data-day="thursday">Thursday</button>
+                    <button class="schedule-btn" data-day="friday">Friday</button>
+                    <button class="schedule-btn" data-day="saturday">Saturday</button>
+                    <button class="schedule-btn" data-day="sunday">Sunday</button>
+                </div>
+                
+                <div class="schedule-content">
+                    <div class="schedule-day active" data-day="monday">
+                        <div class="class-item">
+                            <div class="class-time">6:00 AM</div>
+                            <div class="class-details">
+                                <h4>Morning Yoga</h4>
+                                <p>Sarah Williams • Studio 1</p>
+                                <span class="class-spots">8 spots left</span>
+                            </div>
+                            <button class="btn btn-sm">Book Now</button>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-time">10:00 AM</div>
+                            <div class="class-details">
+                                <h4>Strength Training</h4>
+                                <p>Mike Johnson • Gym Floor</p>
+                                <span class="class-spots">3 spots left</span>
+                            </div>
+                            <button class="btn btn-sm">Book Now</button>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-time">6:00 PM</div>
+                            <div class="class-details">
+                                <h4>HIIT Bootcamp</h4>
+                                <p>David Chen • Studio 2</p>
+                                <span class="class-spots full">Full</span>
+                            </div>
+                            <button class="btn btn-sm" disabled>Waitlist</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Membership Plans</h2>
+                <p>Choose the perfect plan that fits your lifestyle and fitness goals</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">29</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Gym Access</li>
+                            <li><i class="fas fa-check"></i> Locker Room</li>
+                            <li><i class="fas fa-check"></i> Free Wi-Fi</li>
+                            <li><i class="fas fa-times"></i> Personal Training</li>
+                            <li><i class="fas fa-times"></i> Group Classes</li>
+                            <li><i class="fas fa-times"></i> Nutrition Plan</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-outline">Choose Plan</button>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">59</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Everything in Basic</li>
+                            <li><i class="fas fa-check"></i> Unlimited Group Classes</li>
+                            <li><i class="fas fa-check"></i> 2 Personal Training Sessions</li>
+                            <li><i class="fas fa-check"></i> Nutrition Consultation</li>
+                            <li><i class="fas fa-check"></i> Guest Passes (2/month)</li>
+                            <li><i class="fas fa-times"></i> 24/7 Access</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary">Choose Plan</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Elite</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Everything in Premium</li>
+                            <li><i class="fas fa-check"></i> 24/7 Gym Access</li>
+                            <li><i class="fas fa-check"></i> Unlimited Personal Training</li>
+                            <li><i class="fas fa-check"></i> Custom Meal Plans</li>
+                            <li><i class="fas fa-check"></i> VIP Locker</li>
+                            <li><i class="fas fa-check"></i> Free Supplements</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-outline">Choose Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <p>Ready to start your fitness journey? Contact us today!</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>123 Fitness Street, Gym City, GC 12345</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p>(555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>info@fitzonegym.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Hours</h4>
+                                <p>Mon-Fri: 5AM-11PM<br>Sat-Sun: 6AM-10PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form">
+                        <h3>Start Your Free Trial</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" placeholder="Email Address" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Select Your Goal</option>
+                                <option value="weight-loss">Weight Loss</option>
+                                <option value="muscle-gain">Muscle Gain</option>
+                                <option value="general-fitness">General Fitness</option>
+                                <option value="sports-performance">Sports Performance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Tell us about your fitness experience..." rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Start Free Trial</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>FitZone</span>
+                    </div>
+                    <p>Transform your body and mind with our comprehensive fitness programs and expert guidance.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Programs</h4>
+                        <ul>
+                            <li><a href="#programs">Strength Training</a></li>
+                            <li><a href="#programs">Cardio Workouts</a></li>
+                            <li><a href="#programs">Yoga Classes</a></li>
+                            <li><a href="#programs">HIIT Training</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Membership</h4>
+                        <ul>
+                            <li><a href="#pricing">Basic Plan</a></li>
+                            <li><a href="#pricing">Premium Plan</a></li>
+                            <li><a href="#pricing">Elite Plan</a></li>
+                            <li><a href="#contact">Free Trial</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#contact">Contact Us</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 FitZone Gym. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

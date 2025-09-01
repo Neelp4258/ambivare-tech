@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSmart Pro - Learning Platform by Ambivare</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fecaca 100%);
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 25px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 50px;
+            background: white;
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-section h1 {
+            font-size: 42px;
+            background: linear-gradient(45deg, #7c3aed, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .ai-tutor-badge {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            display: inline-block;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+            to { box-shadow: 0 0 30px rgba(16, 185, 129, 0.8); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #7c3aed, #3b82f6);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .stat-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .courses-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #1f2937;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-header {
+            height: 150px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            position: relative;
+        }
+
+        .ai-powered {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #10b981;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .course-description {
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f3f4f6;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .btn-continue {
+            width: 100%;
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .learning-path {
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+        }
+
+        .path-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .path-step {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .path-step:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #fbbf24;
+            color: #92400e;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .analytics-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid #10b981;
+        }
+
+        .achievement-icon {
+            font-size: 24px;
+        }
+
+        .live-session {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">📚 EduSmart Pro</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Dashboard</a>
+                <a href="#" class="nav-link">My Courses</a>
+                <a href="#" class="nav-link">Live Classes</a>
+                <a href="#" class="nav-link">Assignments</a>
+                <a href="#" class="nav-link">Grades</a>
+            </div>
+            <div class="user-profile">
+                <div style="width: 35px; height: 35px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">👨‍🎓</div>
+                <span>John Student</span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1>Adaptive Learning Experience</h1>
+            <p style="font-size: 18px; color: #6b7280; margin-bottom: 25px;">
+                Personalized education powered by AI that adapts to your learning style
+            </p>
+            <div class="ai-tutor-badge">🤖 AI Tutor Active</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-value">87%</div>
+                <div>Course Progress</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-value">4.8</div>
+                <div>Average Grade</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value">12</div>
+                <div>Completed Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-value">45</div>
+                <div>Achievements</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-value">124h</div>
+                <div>Learning Time</div>
+            </div>
+        </div>
+
+        <div class="live-session">
+            <h3>🔴 LIVE: Advanced JavaScript Masterclass</h3>
+            <p>Join Dr. Sarah Wilson • 127 students online • Started 15 minutes ago</p>
+            <button class="btn-continue" style="margin-top: 15px; background: white; color: #ef4444;">Join Live Session</button>
+        </div>
+
+        <div class="learning-path">
+            <h2>🎯 Your Personalized Learning Path</h2>
+            <p style="opacity: 0.8; margin-top: 10px;">AI-curated curriculum based on your goals and learning patterns</p>
+            <div class="path-steps">
+                <div class="path-step">
+                    <div class="step-number">1</div>
+                    <h3 style="margin-top: 15px;">Fundamentals</h3>
+                    <p>Master the basics with interactive lessons and real-world examples</p>
+                    <div style="margin-top: 15px; color: #10b981; font-weight: 600;">✅ Completed</div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">2</div>
+                    <h3 style="margin-top: 15px;">Intermediate</h3>
+                    <p>Build complex projects and develop problem-solving skills</p>
+                    <div style="margin-top: 15px; color: #fbbf24; font-weight: 600;">📚 In Progress (67%)</div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">3</div>
+                    <h3 style="margin-top: 15px;">Advanced</h3>
+                    <p>Specialization tracks and industry-specific applications</p>
+                    <div style="margin-top: 15px; color: #6b7280; font-weight: 600;">🔒 Locked</div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">4</div>
+                    <h3 style="margin-top: 15px;">Expert</h3>
+                    <p>Lead projects, mentor others, and contribute to the community</p>
+                    <div style="margin-top: 15px; color: #6b7280; font-weight: 600;">🔒 Locked</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">📚 Continue Learning</div>
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-header">💻</div>
+                <div class="ai-powered">AI Adaptive</div>
+                <div class="course-content">
+                    <h3 class="course-title">Full Stack Web Development</h3>
+                    <p class="course-description">Learn React, Node.js, and MongoDB with hands-on projects and AI-powered coding assistance.</p>
+                    <div class="course-meta">
+                        <span>⏱️ 32 hours</span>
+                        <span>👥 12,847 students</span>
+                        <span>⭐ 4.9/5</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 67%;"></div>
+                    </div>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 15px;">67% Complete • Next: Express.js Fundamentals</p>
+                    <button class="btn-continue">Continue Learning</button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">🤖</div>
+                <div class="ai-powered">AI Enhanced</div>
+                <div class="course-content">
+                    <h3 class="course-title">Machine Learning Fundamentals</h3>
+                    <p class="course-description">Master Python, TensorFlow, and neural networks with interactive labs and AI mentor guidance.</p>
+                    <div class="course-meta">
+                        <span>⏱️ 45 hours</span>
+                        <span>👥 8,934 students</span>
+                        <span>⭐ 4.8/5</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 23%;"></div>
+                    </div>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 15px;">23% Complete • Next: Linear Regression</p>
+                    <button class="btn-continue">Continue Learning</button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">🎨</div>
+                <div class="ai-powered">AI Creative</div>
+                <div class="course-content">
+                    <h3 class="course-title">UI/UX Design Mastery</h3>
+                    <p class="course-description">Design beautiful interfaces using Figma, user research, and AI-assisted design tools.</p>
+                    <div class="course-meta">
+                        <span>⏱️ 28 hours</span>
+                        <span>👥 15,672 students</span>
+                        <span>⭐ 4.9/5</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 89%;"></div>
+                    </div>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 15px;">89% Complete • Next: Final Portfolio</p>
+                    <button class="btn-continue">Continue Learning</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="analytics-section">
+            <div class="card">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    📊 Learning Analytics
+                </h3>
+                <canvas id="learningChart" width="400" height="200"></canvas>
+            </div>
+
+            <div class="card">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    🏆 Recent Achievements
+                </h3>
+                <div class="achievement-item">
+                    <div class="achievement-icon">🥇</div>
+                    <div>
+                        <h4>JavaScript Expert</h4>
+                        <p style="color: #6b7280; font-size: 14px;">Completed advanced JS concepts</p>
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">📱</div>
+                    <div>
+                        <h4>Mobile App Builder</h4>
+                        <p style="color: #6b7280; font-size: 14px;">Built first React Native app</p>
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">🎯</div>
+                    <div>
+                        <h4>Goal Achiever</h4>
+                        <p style="color: #6b7280; font-size: 14px;">Completed 30-day challenge</p>
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">👥</div>
+                    <div>
+                        <h4>Community Helper</h4>
+                        <p style="color: #6b7280; font-size: 14px;">Helped 50+ fellow students</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 30px;">
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                🤖 AI Learning Assistant
+            </h3>
+            <div style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 25px; border-radius: 15px;">
+                <p style="margin-bottom: 15px;"><strong>Personalized Recommendations:</strong></p>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Focus on JavaScript ES6+ features - detected knowledge gap</li>
+                    <li>Practice more coding challenges to improve problem-solving speed</li>
+                    <li>Join the React study group - matches your learning style</li>
+                    <li>Consider the Advanced CSS course - complements your current path</li>
+                </ul>
+                <button style="background: white; color: #3b82f6; border: none; padding: 12px 24px; border-radius: 10px; font-weight: 600; margin-top: 20px; cursor: pointer;" onclick="showAIFeedback()">
+                    Get Detailed AI Analysis
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: #1f2937; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <p>&copy; 2025 EduSmart Pro - Powered by Ambivare Solutions</p>
+        <p style="margin-top: 10px; opacity: 0.8;">Advanced Learning Management Platform with AI Integration</p>
+    </footer>
+
+    <script>
+        // Learning Progress Chart
+        const learningCtx = document.getElementById('learningChart').getContext('2d');
+        new Chart(learningCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'This Week'],
+                datasets: [{
+                    label: 'Hours Studied',
+                    data: [12, 18, 15, 22, 28],
+                    backgroundColor: ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444'],
+                    borderRadius: 8,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+
+        function showAIFeedback() {
+            alert('🤖 AI Learning Analysis\n\n✅ Strengths:\n• Excellent problem-solving approach\n• Consistent daily practice\n• Strong collaboration skills\n\n📈 Growth Areas:\n• Algorithm optimization\n• Code documentation\n• Advanced debugging\n\n🎯 Next Steps:\n• Take "Data Structures" course\n• Join peer programming sessions\n• Practice whiteboard coding\n\n- EduSmart AI Tutor');
+        }
+
+        // Simulate progress updates
+        setInterval(() => {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const currentWidth = parseInt(bar.style.width);
+                if (currentWidth < 100 && Math.random() > 0.7) {
+                    bar.style.width = (currentWidth + 1) + '%';
+                }
+            });
+        }, 5000);
+
+        // Interactive course cards
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.course-title').textContent;
+                alert(`🚀 Opening ${title}...\n\n• AI tutor initialized\n• Personalized content loaded\n• Progress tracking enabled\n• Interactive labs ready\n\nGet ready for an amazing learning experience!`);
+            });
+        });
+    </script>
+</body>
+</html>

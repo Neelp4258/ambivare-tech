@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreativeStudio - Portfolio & Agency Template</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Creative<span>Studio</span></h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">We Create</span>
+                    <span class="title-line highlight">Amazing</span>
+                    <span class="title-line">Experiences</span>
+                </h1>
+                <p class="hero-subtitle">Transforming ideas into stunning visual stories that captivate and inspire your audience.</p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">View Our Work</a>
+                    <a href="#contact" class="btn btn-outline">Let's Talk</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="creative-element">
+                    <div class="palette">
+                        <div class="color-dot color-1"></div>
+                        <div class="color-dot color-2"></div>
+                        <div class="color-dot color-3"></div>
+                        <div class="color-dot color-4"></div>
+                    </div>
+                    <div class="design-tools">
+                        <i class="fas fa-paint-brush"></i>
+                        <i class="fas fa-pen-nib"></i>
+                        <i class="fas fa-palette"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About Our Studio</h2>
+                    <p class="section-subtitle">We're a team of passionate creatives who believe in the power of great design.</p>
+                    <p>Founded in 2018, CreativeStudio has been at the forefront of digital design innovation. We combine artistic vision with strategic thinking to create memorable brand experiences that resonate with audiences and drive results.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h3>150+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>50+</h3>
+                            <p>Happy Clients</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>25+</h3>
+                            <p>Awards Won</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>Sarah Johnson</h4>
+                            <p>Creative Director</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>Mike Chen</h4>
+                            <p>Lead Designer</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>Emma Davis</h4>
+                            <p>UX Specialist</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>Alex Rivera</h4>
+                            <p>Brand Strategist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Showcasing our latest creative projects</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="print">Print</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Brand Identity Design</h3>
+                            <p>Complete branding package for tech startup</p>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>E-commerce Website</h3>
+                            <p>Modern online store with seamless UX</p>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Mobile App Design</h3>
+                            <p>Intuitive fitness tracking application</p>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="print">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Magazine Layout</h3>
+                            <p>Editorial design for lifestyle magazine</p>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Restaurant Branding</h3>
+                            <p>Complete visual identity for fine dining</p>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Corporate Website</h3>
+                            <p>Professional site for consulting firm</p>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive creative solutions for your brand</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Brand Identity</h3>
+                    <p>Complete brand development including logo design, color palettes, typography, and brand guidelines.</p>
+                    <ul class="service-features">
+                        <li>Logo Design</li>
+                        <li>Brand Guidelines</li>
+                        <li>Color Schemes</li>
+                        <li>Typography</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Design</h3>
+                    <p>Modern, responsive websites that engage users and drive conversions across all devices.</p>
+                    <ul class="service-features">
+                        <li>Responsive Design</li>
+                        <li>User Experience</li>
+                        <li>E-commerce</li>
+                        <li>CMS Integration</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Apps</h3>
+                    <p>Intuitive mobile applications with beautiful interfaces and seamless user experiences.</p>
+                    <ul class="service-features">
+                        <li>UI/UX Design</li>
+                        <li>Prototyping</li>
+                        <li>User Testing</li>
+                        <li>App Store Assets</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <h3>Print Design</h3>
+                    <p>High-quality print materials that make a lasting impression on your audience.</p>
+                    <ul class="service-features">
+                        <li>Business Cards</li>
+                        <li>Brochures</li>
+                        <li>Packaging</li>
+                        <li>Signage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2 class="section-title">Let's Create Something Amazing Together</h2>
+                    <p class="section-subtitle">Ready to bring your vision to life? We'd love to hear about your project.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Studio Location</h4>
+                                <p>456 Creative Ave, Design District<br>Art City, AC 67890</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Call Us</h4>
+                                <p>+1 (555) 987-6543</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Us</h4>
+                                <p>hello@creativestudio.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Project Type" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Budget Range</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-25k">$10,000 - $25,000</option>
+                                <option value="25k-50k">$25,000 - $50,000</option>
+                                <option value="50k+">$50,000+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Tell us about your project..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Start Your Project</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Creative<span>Studio</span></h3>
+                    <p>Transforming ideas into stunning visual experiences.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">Brand Identity</a></li>
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">Mobile Apps</a></li>
+                            <li><a href="#">Print Design</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="#">Get Quote</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Privacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CreativeStudio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

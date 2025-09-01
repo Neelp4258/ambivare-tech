@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Properties - Your Dream Home Awaits</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <h1>Prime Properties</h1>
+            </div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#properties">Properties</a>
+                <a href="#services">Services</a>
+                <a href="#agents">Agents</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h2>Find Your Dream Home</h2>
+                <p>Discover the perfect property with our expert real estate services</p>
+                <div class="search-bar">
+                    <div class="search-input">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" placeholder="Enter location, city, or ZIP code">
+                    </div>
+                    <select class="property-type">
+                        <option value="">Property Type</option>
+                        <option value="house">House</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="condo">Condo</option>
+                        <option value="villa">Villa</option>
+                    </select>
+                    <select class="price-range">
+                        <option value="">Price Range</option>
+                        <option value="0-200000">$0 - $200K</option>
+                        <option value="200000-500000">$200K - $500K</option>
+                        <option value="500000-1000000">$500K - $1M</option>
+                        <option value="1000000+">$1M+</option>
+                    </select>
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Properties Sold</p>
+                    </div>
+                    <div class="stat">
+                        <h3>98%</h3>
+                        <p>Customer Satisfaction</p>
+                    </div>
+                    <div class="stat">
+                        <h3>15+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="properties" class="featured-properties">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Properties</h2>
+                <p>Discover our hand-picked selection of premium properties</p>
+            </div>
+            <div class="properties-grid">
+                <div class="property-card">
+                    <div class="property-image">
+                        <div class="property-badge">For Sale</div>
+                        <div class="property-placeholder">🏠</div>
+                        <div class="property-price">$750,000</div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Luxury Family Villa</h3>
+                        <p class="property-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Beverly Hills, CA
+                        </p>
+                        <div class="property-features">
+                            <span><i class="fas fa-bed"></i> 4 Beds</span>
+                            <span><i class="fas fa-bath"></i> 3 Baths</span>
+                            <span><i class="fas fa-ruler-combined"></i> 2,500 sq ft</span>
+                        </div>
+                        <div class="property-actions">
+                            <button class="btn-view">View Details</button>
+                            <button class="btn-contact">Contact Agent</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image">
+                        <div class="property-badge">For Rent</div>
+                        <div class="property-placeholder">🏢</div>
+                        <div class="property-price">$3,200/mo</div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Modern Downtown Apartment</h3>
+                        <p class="property-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Manhattan, NY
+                        </p>
+                        <div class="property-features">
+                            <span><i class="fas fa-bed"></i> 2 Beds</span>
+                            <span><i class="fas fa-bath"></i> 2 Baths</span>
+                            <span><i class="fas fa-ruler-combined"></i> 1,200 sq ft</span>
+                        </div>
+                        <div class="property-actions">
+                            <button class="btn-view">View Details</button>
+                            <button class="btn-contact">Contact Agent</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image">
+                        <div class="property-badge">For Sale</div>
+                        <div class="property-placeholder">🏡</div>
+                        <div class="property-price">$485,000</div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Charming Suburban Home</h3>
+                        <p class="property-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Austin, TX
+                        </p>
+                        <div class="property-features">
+                            <span><i class="fas fa-bed"></i> 3 Beds</span>
+                            <span><i class="fas fa-bath"></i> 2 Baths</span>
+                            <span><i class="fas fa-ruler-combined"></i> 1,800 sq ft</span>
+                        </div>
+                        <div class="property-actions">
+                            <button class="btn-view">View Details</button>
+                            <button class="btn-contact">Contact Agent</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-btn">
+                <button class="btn-primary">View All Properties</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Complete real estate solutions for all your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Property Sales</h3>
+                    <p>Expert guidance in buying and selling residential and commercial properties</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Property Rentals</h3>
+                    <p>Find the perfect rental property or manage your investment properties</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Property Valuation</h3>
+                    <p>Accurate property valuations based on current market conditions</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Investment Consulting</h3>
+                    <p>Strategic advice for real estate investment opportunities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agents" class="agents">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Expert Agents</h2>
+                <p>Professional real estate agents dedicated to your success</p>
+            </div>
+            <div class="agents-grid">
+                <div class="agent-card">
+                    <div class="agent-image">👨‍💼</div>
+                    <h3>John Smith</h3>
+                    <p class="agent-title">Senior Real Estate Agent</p>
+                    <p class="agent-experience">15+ years experience</p>
+                    <div class="agent-stats">
+                        <span>200+ Properties Sold</span>
+                        <span>$50M+ Sales Volume</span>
+                    </div>
+                    <div class="agent-contact">
+                        <a href="tel:+1234567890"><i class="fas fa-phone"></i></a>
+                        <a href="mailto:john@primeproperties.com"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-image">👩‍💼</div>
+                    <h3>Sarah Johnson</h3>
+                    <p class="agent-title">Luxury Property Specialist</p>
+                    <p class="agent-experience">12+ years experience</p>
+                    <div class="agent-stats">
+                        <span>150+ Properties Sold</span>
+                        <span>$40M+ Sales Volume</span>
+                    </div>
+                    <div class="agent-contact">
+                        <a href="tel:+1234567891"><i class="fas fa-phone"></i></a>
+                        <a href="mailto:sarah@primeproperties.com"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-image">👨‍💼</div>
+                    <h3>Michael Davis</h3>
+                    <p class="agent-title">Commercial Real Estate Expert</p>
+                    <p class="agent-experience">18+ years experience</p>
+                    <div class="agent-stats">
+                        <span>100+ Commercial Deals</span>
+                        <span>$75M+ Sales Volume</span>
+                    </div>
+                    <div class="agent-contact">
+                        <a href="tel:+1234567892"><i class="fas fa-phone"></i></a>
+                        <a href="mailto:michael@primeproperties.com"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Clients Say</h2>
+                <p>Real stories from satisfied homeowners</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Prime Properties helped us find our dream home in just 2 weeks. Their team is professional, knowledgeable, and truly cares about their clients."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👫</div>
+                        <div class="author-info">
+                            <h4>David & Emily Thompson</h4>
+                            <span>First-time Home Buyers</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Selling our property was seamless thanks to their marketing expertise. We got multiple offers within days and sold above asking price!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩‍💼</div>
+                        <div class="author-info">
+                            <h4>Jessica Martinez</h4>
+                            <span>Property Seller</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Their investment consulting helped us build a profitable real estate portfolio. Highly recommend for serious investors."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨‍💼</div>
+                        <div class="author-info">
+                            <h4>Robert Chen</h4>
+                            <span>Real Estate Investor</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Prime Properties</h2>
+                    <p>With over 15 years of experience in the real estate industry, Prime Properties has established itself as the leading real estate agency in the region. We specialize in residential, commercial, and luxury properties, providing comprehensive services to buyers, sellers, and investors.</p>
+                    <p>Our team of experienced agents is committed to delivering exceptional service and helping our clients achieve their real estate goals. Whether you're buying your first home, selling a property, or building an investment portfolio, we're here to guide you every step of the way.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <span>Award-Winning Service</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <span>Expert Team</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="building-placeholder">🏢</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Ready to find your dream property? Contact us today!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Office Address</h4>
+                            <p>123 Real Estate Boulevard<br>Downtown District, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone Number</h4>
+                            <p>(555) 123-REAL<br>(555) 123-7325</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Address</h4>
+                            <p>info@primeproperties.com<br>sales@primeproperties.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Business Hours</h4>
+                            <p>Mon-Fri: 9AM-7PM<br>Sat-Sun: 10AM-5PM</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <h3>Schedule a Consultation</h3>
+                    <div class="form-row">
+                        <input type="text" placeholder="First Name" required>
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                    </div>
+                    <select required>
+                        <option value="">I'm interested in...</option>
+                        <option value="buying">Buying a Property</option>
+                        <option value="selling">Selling a Property</option>
+                        <option value="renting">Renting a Property</option>
+                        <option value="investing">Investment Opportunities</option>
+                        <option value="valuation">Property Valuation</option>
+                    </select>
+                    <select>
+                        <option value="">Preferred Contact Method</option>
+                        <option value="phone">Phone Call</option>
+                        <option value="email">Email</option>
+                        <option value="text">Text Message</option>
+                    </select>
+                    <textarea placeholder="Tell us about your property needs..." rows="4" required></textarea>
+                    <button type="submit" class="submit-btn">Schedule Consultation</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        <span>Prime Properties</span>
+                    </div>
+                    <p>Your trusted partner in real estate since 2008. We make buying, selling, and investing in real estate simple and profitable.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#agents">Our Agents</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Buy Property</a></li>
+                        <li><a href="#">Sell Property</a></li>
+                        <li><a href="#">Rent Property</a></li>
+                        <li><a href="#">Property Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> (555) 123-REAL</p>
+                    <p><i class="fas fa-envelope"></i> info@primeproperties.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Real Estate Blvd, NY</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Prime Properties. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

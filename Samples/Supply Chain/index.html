@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiFlow - Supply Chain Platform by Ambivare</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(45deg, #FF9A8B, #A8E6CF, #FFD3A5, #FD99B7);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #2c3e50;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Unique top navigation bar */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #FF6B6B;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .nav-tab {
+            background: transparent;
+            border: 2px solid transparent;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-tab:hover::before {
+            left: 100%;
+        }
+
+        .nav-tab.active, .nav-tab:hover {
+            color: white;
+            border-color: #FF6B6B;
+            background: rgba(255, 107, 107, 0.2);
+        }
+
+        /* Main content with magazine-style layout */
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Hero section with split design */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            min-height: 400px;
+        }
+
+        .hero-main {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 35px;
+            padding: 50px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-main::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #FF6B6B, transparent);
+            border-radius: 50%;
+            opacity: 0.1;
+            transform: translate(50px, -50px);
+        }
+
+        .hero-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .quick-stat {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 25px;
+            border-radius: 25px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .quick-stat:hover {
+            transform: rotate(-2deg) scale(1.05);
+            background: rgba(255, 107, 107, 0.8);
+        }
+
+        /* Warehouse visual representation */
+        .warehouse-visual {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .warehouse-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(4, 60px);
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .warehouse-section {
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .section-receiving {
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: white;
+        }
+
+        .section-storage {
+            background: linear-gradient(45deg, #4ECDC4, #7FDBDA);
+            color: white;
+        }
+
+        .section-picking {
+            background: linear-gradient(45deg, #FFD93D, #6BCF7F);
+            color: white;
+        }
+
+        .section-shipping {
+            background: linear-gradient(45deg, #A8E6CF, #88D8A3);
+            color: white;
+        }
+
+        .section-empty {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            color: #6c757d;
+        }
+
+        .warehouse-section:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Shipment tracking with timeline */
+        .tracking-container {
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            border-radius: 30px;
+            padding: 40px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(15px);
+        }
+
+        .shipments-board {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .shipment-card {
+            min-width: 320px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .shipment-card:hover {
+            transform: translateY(-15px) rotate(2deg);
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(76, 205, 196, 0.2));
+        }
+
+        .tracking-timeline {
+            margin-top: 20px;
+        }
+
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .step-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-complete {
+            background: #00C851;
+            box-shadow: 0 0 10px #00C851;
+        }
+
+        .step-current {
+            background: #FFD93D;
+            box-shadow: 0 0 15px #FFD93D;
+            animation: pulse 2s infinite;
+        }
+
+        .step-pending {
+            background: #666;
+        }
+
+        .timeline-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 20px;
+            width: 2px;
+            height: 25px;
+            background: #444;
+            z-index: 1;
+        }
+
+        /* Analytics panels with magazine layout */
+        .analytics-magazine {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .magazine-main {
+            grid-row: span 2;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .magazine-side {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Route optimization map */
+        .route-map {
+            height: 300px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .delivery-truck {
+            position: absolute;
+            font-size: 20px;
+            animation: moveAlong 8s linear infinite;
+        }
+
+        @keyframes moveAlong {
+            0% { top: 20%; left: 10%; }
+            25% { top: 50%; left: 40%; }
+            50% { top: 30%; left: 70%; }
+            75% { top: 60%; left: 50%; }
+            100% { top: 20%; left: 10%; }
+        }
+
+        .route-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #FF6B6B;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Inventory alerts with card stack */
+        .alerts-stack {
+            position: relative;
+            height: 200px;
+            margin-top: 30px;
+        }
+
+        .alert-card {
+            position: absolute;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .alert-card:nth-child(1) {
+            top: 0;
+            transform: rotate(-2deg);
+            z-index: 3;
+        }
+
+        .alert-card:nth-child(2) {
+            top: 10px;
+            transform: rotate(1deg);
+            z-index: 2;
+        }
+
+        .alert-card:nth-child(3) {
+            top: 20px;
+            transform: rotate(-1deg);
+            z-index: 1;
+        }
+
+        .alert-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 10;
+        }
+
+        /* Floating metrics with 3D effect */
+        .floating-metrics {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .floating-metric {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: perspective(1000px) rotateY(-15deg);
+            transition: all 0.3s ease;
+        }
+
+        .floating-metric:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-split {
+                grid-template-columns: 1fr;
+            }
+            
+            .analytics-magazine {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-metrics {
+                position: static;
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="top-bar">
+            <div class="top-nav">
+                <div class="nav-tab active">🏠 Control Center</div>
+                <div class="nav-tab">📦 Inventory</div>
+                <div class="nav-tab">🚛 Shipments</div>
+                <div class="nav-tab">📍 Routes</div>
+                <div class="nav-tab">📊 Analytics</div>
+                <div class="nav-tab">⚙️ Settings</div>
+            </div>
+        </nav>
+
+        <div class="main-container">
+            <div class="hero-split">
+                <div class="hero-main">
+                    <h1 style="font-size: 42px; font-weight: 800; margin-bottom: 20px; color: #2c3e50;">
+                        🚛 LogiFlow Command
+                    </h1>
+                    <p style="font-size: 18px; color: #7f8c8d; margin-bottom: 30px;">
+                        AI-powered supply chain optimization with real-time tracking and predictive analytics
+                    </p>
+                    <div class="route-map">
+                        <div class="delivery-truck">🚛</div>
+                        <div class="route-point" style="top: 25%; left: 15%;"></div>
+                        <div class="route-point" style="top: 45%; left: 45%;"></div>
+                        <div class="route-point" style="top: 35%; left: 75%;"></div>
+                        <div class="route-point" style="top: 65%; left: 55%;"></div>
+                        
+                        <!-- Route lines -->
+                        <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+                            <path d="M 15% 25% Q 30% 10% 45% 45%" stroke="#FF6B6B" stroke-width="3" fill="none" stroke-dasharray="10,5"/>
+                            <path d="M 45% 45% Q 60% 30% 75% 35%" stroke="#4ECDC4" stroke-width="3" fill="none" stroke-dasharray="10,5"/>
+                            <path d="M 75% 35% Q 65% 50% 55% 65%" stroke="#FFD93D" stroke-width="3" fill="none" stroke-dasharray="10,5"/>
+                        </svg>
+                        
+                        <div style="position: absolute; bottom: 20px; left: 20px; color: white; background: rgba(0,0,0,0.7); padding: 10px 15px; border-radius: 10px; font-size: 12px;">
+                            🗺️ Real-time route optimization active
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-sidebar">
+                    <div class="quick-stat">
+                        <div style="font-size: 32px; font-weight: bold;">127</div>
+                        <div style="font-size: 14px; opacity: 0.8;">Active Shipments</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div style="font-size: 32px; font-weight: bold;">94.8%</div>
+                        <div style="font-size: 14px; opacity: 0.8;">On-time Delivery</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div style="font-size: 32px; font-weight: bold;">$2.4M</div>
+                        <div style="font-size: 14px; opacity: 0.8;">Cost Savings</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warehouse Visual -->
+            <div class="warehouse-visual">
+                <h2 style="color: #2c3e50; margin-bottom: 25px; text-align: center; font-size: 28px;">
+                    🏭 Warehouse Operations Live View
+                </h2>
+                <div class="warehouse-grid">
+                    <div class="warehouse-section section-receiving">📥 RECEIVING</div>
+                    <div class="warehouse-section section-receiving">DOCK 1</div>
+                    <div class="warehouse-section section-receiving">DOCK 2</div>
+                    <div class="warehouse-section section-receiving">DOCK 3</div>
+                    <div class="warehouse-section section-storage">📦 A1-A4</div>
+                    <div class="warehouse-section section-storage">A5-A8</div>
+                    <div class="warehouse-section section-storage">B1-B4</div>
+                    <div class="warehouse-section section-storage">B5-B8</div>
+
+                    <div class="warehouse-section section-storage">C1-C4</div>
+                    <div class="warehouse-section section-storage">C5-C8</div>
+                    <div class="warehouse-section section-storage">D1-D4</div>
+                    <div class="warehouse-section section-storage">D5-D8</div>
+                    <div class="warehouse-section section-picking">🛒 PICK 1</div>
+                    <div class="warehouse-section section-picking">PICK 2</div>
+                    <div class="warehouse-section section-picking">PACK 1</div>
+                    <div class="warehouse-section section-picking">PACK 2</div>
+
+                    <div class="warehouse-section section-storage">E1-E4</div>
+                    <div class="warehouse-section section-storage">E5-E8</div>
+                    <div class="warehouse-section section-empty">EMPTY</div>
+                    <div class="warehouse-section section-empty">EMPTY</div>
+                    <div class="warehouse-section section-shipping">📤 SHIP 1</div>
+                    <div class="warehouse-section section-shipping">SHIP 2</div>
+                    <div class="warehouse-section section-shipping">SHIP 3</div>
+                    <div class="warehouse-section section-shipping">LOADING</div>
+
+                    <div class="warehouse-section section-storage">F1-F4</div>
+                    <div class="warehouse-section section-storage">F5-F8</div>
+                    <div class="warehouse-section section-storage">G1-G4</div>
+                    <div class="warehouse-section section-storage">G5-G8</div>
+                    <div class="warehouse-section section-shipping">🚚 OUT 1</div>
+                    <div class="warehouse-section section-shipping">OUT 2</div>
+                    <div class="warehouse-section section-shipping">OUT 3</div>
+                    <div class="warehouse-section section-shipping">OUT 4</div>
+                </div>
+                <div style="text-align: center; color: #7f8c8d; margin-top: 20px;">
+                    Click any section for detailed information • Real-time capacity: 78% • AI optimization active
+                </div>
+            </div>
+
+            <!-- Shipment Tracking Board -->
+            <div class="tracking-container">
+                <h2 style="margin-bottom: 30px; text-align: center;">🌐 Global Shipment Tracking</h2>
+                <div class="shipments-board">
+                    <div class="shipment-card" onclick="trackShipment('SHP001')">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3>SHP-001-2025</h3>
+                            <span style="background: #00C851; padding: 5px 10px; border-radius: 10px; font-size: 12px;">IN TRANSIT</span>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>🏭 Origin:</strong> Mumbai Warehouse<br>
+                            <strong>🎯 Destination:</strong> New York Hub<br>
+                            <strong>📦 Items:</strong> 2,847 units
+                        </div>
+                        <div class="tracking-timeline">
+                            <div class="timeline-step">
+                                <div class="step-dot step-complete"></div>
+                                <span>Picked & Packed</span>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-dot step-complete"></div>
+                                <span>Departed Mumbai</span>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-dot step-current"></div>
+                                <span>In Transit - Dubai</span>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-dot step-pending"></div>
+                                <span>Customs Clearance</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 12px; color: #FFD93D;">
+                            ⚠️ Customs delay detected • AI rerouting options available
+                        </div>
+                    </div>
+
+                    <div class="shipment-card" onclick="trackShipment('SHP003')">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3>SHP-003-2025</h3>
+                            <span style="background: #FF4757; padding: 5px 10px; border-radius: 10px; font-size: 12px;">URGENT</span>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>🏭 Origin:</strong> Bangalore Tech<br>
+                            <strong>🎯 Destination:</strong> Tokyo Office<br>
+                            <strong>📦 Items:</strong> 892 units
+                        </div>
+                        <div class="tracking-timeline">
+                            <div class="timeline-step">
+                                <div class="step-dot step-complete"></div>
+                                <span>Express Processing</span>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-dot step-current"></div>
+                                <span>Priority Flight</span>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-dot step-pending"></div>
+                                <span>Tokyo Arrival</span>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-dot step-pending"></div>
+                                <span>Last Mile</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 12px; color: #FF4757;">
+                            🚀 Express delivery • 6 hours remaining
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Magazine Layout -->
+            <div class="analytics-magazine">
+                <div class="magazine-main">
+                    <h2 style="color: #2c3e50; margin-bottom: 25px;">📊 Supply Chain Performance</h2>
+                    <canvas id="performanceChart" width="600" height="300"></canvas>
+                    
+                    <div style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 15px;">
+                            <h4 style="color: #2c3e50;">🎯 Efficiency Score</h4>
+                            <div style="font-size: 32px; font-weight: bold; color: #00C851; margin: 10px 0;">94.2%</div>
+                            <div style="font-size: 14px; color: #7f8c8d;">+12% vs last month</div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 15px;">
+                            <h4 style="color: #2c3e50;">💰 Cost Reduction</h4>
+                            <div style="font-size: 32px; font-weight: bold; color: #FF6B6B; margin: 10px 0;">$2.4M</div>
+                            <div style="font-size: 14px; color: #7f8c8d;">Annual savings</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="magazine-side">
+                    <h3 style="margin-bottom: 20px;">🤖 AI Predictions</h3>
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 12px; margin-bottom: 15px;">
+                        <div style="font-size: 12px; color: #4ECDC4; margin-bottom: 5px;">DEMAND FORECAST</div>
+                        <div style="font-weight: bold;">34% increase in Q2</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 12px; margin-bottom: 15px;">
+                        <div style="font-size: 12px; color: #FFD93D; margin-bottom: 5px;">ROUTE OPTIMIZATION</div>
+                        <div style="font-weight: bold;">Save 2.3 hours/delivery</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 12px;">
+                        <div style="font-size: 12px; color: #FF6B6B; margin-bottom: 5px;">RISK ALERT</div>
+                        <div style="font-weight: bold;">Weather delay possible</div>
+                    </div>
+                </div>
+
+                <div class="magazine-side">
+                    <h3 style="margin-bottom: 20px;">⚡ Quick Actions</h3>
+                    <button style="width: 100%; background: linear-gradient(45deg, #FF6B6B, #FF8E8E); color: white; border: none; padding: 15px; border-radius: 12px; margin-bottom: 10px; font-weight: 600; cursor: pointer;" onclick="emergencyReroute()">
+                        🚨 Emergency Reroute
+                    </button>
+                    <button style="width: 100%; background: linear-gradient(45deg, #4ECDC4, #7FDBDA); color: white; border: none; padding: 15px; border-radius: 12px; margin-bottom: 10px; font-weight: 600; cursor: pointer;" onclick="optimizeInventory()">
+                        📦 Optimize Inventory
+                    </button>
+                    <button style="width: 100%; background: linear-gradient(45deg, #FFD93D, #6BCF7F); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer;" onclick="generateReport()">
+                        📊 Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Inventory Alerts Stack -->
+            <div style="background: rgba(255, 255, 255, 0.9); border-radius: 25px; padding: 40px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);">
+                <h2 style="color: #2c3e50; margin-bottom: 25px; text-align: center;">🔔 Inventory Alerts</h2>
+                <div class="alerts-stack">
+                    <div class="alert-card" onclick="handleAlert('stock')">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 24px;">⚠️</div>
+                            <div>
+                                <h4 style="color: #e74c3c;">Low Stock Alert</h4>
+                                <p style="color: #7f8c8d; font-size: 14px;">iPhone 15 Pro - Only 23 units remaining</p>
+                                <div style="margin-top: 8px; font-size: 12px; color: #e74c3c; font-weight: 600;">
+                                    🤖 AI suggests reorder 500 units immediately
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-card" onclick="handleAlert('delivery')">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 24px;">🚛</div>
+                            <div>
+                                <h4 style="color: #f39c12;">Delivery Delay</h4>
+                                <p style="color: #7f8c8d; font-size: 14px;">SHP-045 delayed 2 hours due to traffic</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-card" onclick="handleAlert('quality')">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 24px;">✅</div>
+                            <div>
+                                <h4 style="color: #27ae60;">Quality Check Passed</h4>
+                                <p style="color: #7f8c8d; font-size: 14px;">Batch QC-2025-089 approved for shipping</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Live Metrics -->
+        <div class="floating-metrics">
+            <div class="floating-metric">
+                <div style="font-size: 18px; font-weight: bold;">🚛 23</div>
+                <div style="font-size: 12px; opacity: 0.8;">Trucks Active</div>
+            </div>
+            <div class="floating-metric">
+                <div style="font-size: 18px; font-weight: bold;">⏱️ 2.3h</div>
+                <div style="font-size: 12px; opacity: 0.8;">Avg Delivery</div>
+            </div>
+            <div class="floating-metric">
+                <div style="font-size: 18px; font-weight: bold;">📍 847</div>
+                <div style="font-size: 12px; opacity: 0.8;">Locations</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Performance Chart with unique styling
+        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+        
+        const chartGradient = performanceCtx.createLinearGradient(0, 0, 0, 300);
+        chartGradient.addColorStop(0, 'rgba(255, 107, 107, 0.8)');
+        chartGradient.addColorStop(0.5, 'rgba(76, 205, 196, 0.6)');
+        chartGradient.addColorStop(1, 'rgba(69, 183, 209, 0.4)');
+
+        new Chart(performanceCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Delivery Speed', 'Cost Efficiency', 'Quality Score', 'Customer Satisfaction', 'Route Optimization', 'Inventory Turnover'],
+                datasets: [{
+                    label: 'Current Performance',
+                    data: [92, 87, 96, 94, 89, 91],
+                    borderColor: '#FF6B6B',
+                    backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#FF6B6B',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6
+                }, {
+                    label: 'Industry Average',
+                    data: [75, 70, 80, 78, 72, 74],
+                    borderColor: '#4ECDC4',
+                    backgroundColor: 'rgba(76, 205, 196, 0.1)',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    pointBackgroundColor: '#4ECDC4',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        function trackShipment(id) {
+            alert(`📦 Tracking Details: ${id}\n\n🌐 Real-time GPS: Active\n📡 IoT sensors: 12 active\n🌡️ Temperature: 22°C ✅\n📊 Condition: Optimal\n🛡️ Security: Sealed & Tracked\n\n🤖 AI Insights:\n• Delivery confidence: 97%\n• Route optimized for traffic\n• Weather conditions favorable\n\n- LogiFlow Tracking System`);
+        }
+
+        function emergencyReroute() {
+            alert('🚨 EMERGENCY REROUTE ACTIVATED\n\n🤖 AI Analysis Complete:\n• Traffic accident detected on Route A1\n• Alternative route calculated\n• 15-minute delay avoided\n• All affected shipments notified\n\n✅ Rerouting 7 active deliveries\n🎯 New ETA: 99.2% on-time delivery maintained\n\n- LogiFlow Emergency System');
+        }
+
+        function optimizeInventory() {
+            alert('📦 INVENTORY OPTIMIZATION\n\n🤖 AI Recommendations:\n• Reorder iPhone 15 Pro: 500 units\n• Redistribute laptops from Warehouse B to C\n• Seasonal demand surge predicted for Q2\n• 23% cost reduction opportunity identified\n\n⚡ Auto-purchase orders ready for approval\n💰 Estimated savings: $45,000/month\n\n- LogiFlow Inventory AI');
+        }
+
+        function generateReport() {
+            alert('📊 PERFORMANCE REPORT GENERATED\n\n📈 Key Metrics:\n• On-time delivery: 94.8% ⬆️\n• Cost per shipment: $23.40 ⬇️\n• Customer satisfaction: 96.2% ⬆️\n• Route efficiency: +18% improvement\n\n🎯 Action Items:\n• Expand warehouse capacity in Zone 3\n• Upgrade fleet with IoT sensors\n• Implement predictive maintenance\n\n📧 Full report sent to your email\n\n- LogiFlow Analytics');
+        }
+
+        function handleAlert(type) {
+            const alerts = {
+                stock: '⚠️ STOCK ALERT MANAGEMENT\n\n🤖 AI Auto-Actions Available:\n• Create purchase order automatically\n• Notify supplier with delivery preferences\n• Adjust sales forecasts\n• Update customer delivery dates\n\n✅ Would you like AI to handle this automatically?',
+                delivery: '🚛 DELIVERY DELAY PROTOCOL\n\n📱 Customer notifications sent\n🔄 Alternative routes calculated\n📊 Impact assessment complete\n🤖 AI compensation suggestions ready\n\n⚡ Minimize impact with smart rescheduling',
+                quality: '✅ QUALITY ASSURANCE PASSED\n\n🔍 Batch inspection: 99.7% pass rate\n📋 Documentation: Complete\n🚚 Shipping authorization: Granted\n📊 Quality score: Excellent\n\n🎯 Ready for immediate dispatch'
+            };
+            alert(alerts[type] + '\n\n- LogiFlow Quality System');
+        }
+
+        // Dynamic warehouse section updates
+        setInterval(() => {
+            const sections = document.querySelectorAll('.warehouse-section');
+            const randomSection = sections[Math.floor(Math.random() * sections.length)];
+            
+            if (Math.random() > 0.8) {
+                randomSection.style.transform = 'scale(1.1)';
+                randomSection.style.boxShadow = '0 5px 20px rgba(255, 107, 107, 0.4)';
+                setTimeout(() => {
+                    randomSection.style.transform = 'scale(1)';
+                    randomSection.style.boxShadow = 'none';
+                }, 500);
+            }
+        }, 2000);
+
+        // Tab switching
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelector('.nav-tab.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+
+        // Animate floating metrics
+        document.querySelectorAll('.floating-metric').forEach((metric, index) => {
+            metric.style.animationDelay = `${index * 0.5}s`;
+            metric.style.animation = 'float 4s ease-in-out infinite';
+        });
+
+        // Add floating animation
+        const floatStyle = document.createElement('style');
+        floatStyle.textContent = `
+            @keyframes float {
+                0%, 100% { transform: perspective(1000px) rotateY(-15deg) translateY(0px); }
+                50% { transform: perspective(1000px) rotateY(-15deg) translateY(-8px); }
+            }
+        `;
+        document.head.appendChild(floatStyle);
+    </script>
+</body>
+</html>4ECDC4;">
+                            🤖 AI ETA: 14 hours • 97% on-time probability
+                        </div>
+                    </div>
+
+                    <div class="shipment-card" onclick="trackShipment('SHP002')">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3>SHP-002-2025</h3>
+                            <span style="background: #FFD93D; color: #000; padding: 5px 10px; border-radius: 10px; font-size: 12px;">CUSTOMS</span>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>🏭 Origin:</strong> Delhi Center<br>
+                            <strong>🎯 Destination:</strong> London Hub<br>
+                            <strong>📦 Items:</strong> 1,569 units
+                        </div>
+                        <div class="tracking-timeline">
+                            <div class="timeline-step">
+                                <div class="step-dot step-complete"></div>
+                                <span>Quality Check</span>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-dot step-complete"></div>
+                                <span>Air Freight</span>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-dot step-current"></div>
+                                <span>UK Customs</span>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-dot step-pending"></div>
+                                <span>Final Delivery</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 12px; color: #

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan - Creative Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-animation">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <p>Loading Portfolio...</p>
+    </div>
+
+    <!-- Cursor -->
+    <div class="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-outline"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>Alex Morgan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="line-1">Creative</span>
+                    <span class="line-2">Designer</span>
+                    <span class="line-3">& Developer</span>
+                </h1>
+                <p class="hero-subtitle">I craft beautiful digital experiences that blend creativity with functionality. Specialized in UI/UX design, web development, and brand identity.</p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+                <div class="hero-social">
+                    <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="decoration-dots">
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="section-header">
+                        <h2>About Me</h2>
+                        <p>Passionate about creating meaningful digital experiences</p>
+                    </div>
+                    <div class="about-description">
+                        <p>With over 5 years of experience in design and development, I specialize in creating user-centered digital solutions that drive results. My approach combines strategic thinking with creative execution to deliver projects that not only look great but perform exceptionally.</p>
+                        <p>I believe in the power of good design to transform businesses and enhance user experiences. Whether it's a complete brand identity, a complex web application, or a simple landing page, I bring the same level of passion and attention to detail to every project.</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="150">0</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="50">0</h3>
+                            <p>Happy Clients</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="5">0</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="counter" data-target="25">0</h3>
+                            <p>Awards Won</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-skills">
+                    <h3>Skills & Expertise</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">UI/UX Design</span>
+                                <span class="skill-percent">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Frontend Development</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Brand Identity</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Motion Graphics</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Portfolio</h2>
+                <p>A showcase of my recent work and creative projects</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="ui-ux">UI/UX</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h3>E-commerce Platform</h3>
+                                <p>Modern e-commerce solution with advanced features</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>E-commerce Platform</h4>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h3>Fitness Tracking App</h3>
+                                <p>iOS/Android app for fitness enthusiasts</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Fitness Tracking App</h4>
+                        <span>Mobile App</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h3>Coffee Brand Identity</h3>
+                                <p>Complete brand identity for artisan coffee company</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Coffee Brand Identity</h4>
+                        <span>Branding</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="ui-ux">
+                    <div class="portfolio-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h3>SaaS Dashboard</h3>
+                                <p>Clean and intuitive dashboard interface</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>SaaS Dashboard</h4>
+                        <span>UI/UX Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h3>Restaurant Website</h3>
+                                <p>Elegant website for fine dining restaurant</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Restaurant Website</h4>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h3>Tech Startup Logo</h3>
+                                <p>Modern logo design for tech startup</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Tech Startup Logo</h4>
+                        <span>Branding</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Services</h2>
+                <p>What I can do for you and your business</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Web Design</h3>
+                    <p>Creating responsive and user-friendly websites that convert visitors into customers.</p>
+                    <ul class="service-features">
+                        <li>Responsive Design</li>
+                        <li>SEO Optimization</li>
+                        <li>Fast Loading Speed</li>
+                        <li>Cross-browser Compatible</li>
+                    </ul>
+                    <div class="service-price">Starting at $1,200</div>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Designing intuitive user interfaces that provide exceptional user experiences.</p>
+                    <ul class="service-features">
+                        <li>User Research</li>
+                        <li>Wireframing</li>
+                        <li>Prototype Development</li>
+                        <li>Usability Testing</li>
+                    </ul>
+                    <div class="service-price">Starting at $800</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile App Design</h3>
+                    <p>Crafting beautiful and functional mobile applications for iOS and Android platforms.</p>
+                    <ul class="service-features">
+                        <li>iOS & Android Design</li>
+                        <li>App Store Guidelines</li>
+                        <li>Interactive Prototypes</li>
+                        <li>Design Systems</li>
+                    </ul>
+                    <div class="service-price">Starting at $1,500</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Brand Identity</h3>
+                    <p>Building strong brand identities that resonate with your target audience.</p>
+                    <ul class="service-features">
+                        <li>Logo Design</li>
+                        <li>Brand Guidelines</li>
+                        <li>Color Palette</li>
+                        <li>Typography Selection</li>
+                    </ul>
+                    <div class="service-price">Starting at $600</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Clients Say</h2>
+                <p>Testimonials from satisfied clients worldwide</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card active">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Alex delivered exceptional work on our e-commerce platform. The design is not only beautiful but also highly functional. Our conversion rates increased by 40% after the redesign."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <span>CEO, TechCorp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Working with Alex was a pleasure. He understood our vision perfectly and transformed it into a stunning mobile app design. Highly recommended for any design project."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <span>Founder, StartupX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"The brand identity Alex created for our company perfectly captures our essence. The attention to detail and creative approach exceeded our expectations."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Emily Rodriguez</h4>
+                                <span>Marketing Director, Creative Co.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-navigation">
+                <button class="testimonial-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="testimonial-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="section-header">
+                        <h2>Let's Work Together</h2>
+                        <p>Ready to bring your project to life? Let's discuss your ideas and create something amazing together.</p>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>alex@example.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>New York, NY</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-social">
+                        <h4>Follow Me</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Project Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Select Service</option>
+                                <option value="web-design">Web Design</option>
+                                <option value="ui-ux">UI/UX Design</option>
+                                <option value="mobile-app">Mobile App Design</option>
+                                <option value="branding">Brand Identity</option>
+                                <option value="consultation">Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Budget Range" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Tell me about your project..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Alex Morgan</h3>
+                    <p>Creative Designer & Developer crafting beautiful digital experiences.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#services">Web Design</a></li>
+                            <li><a href="#services">UI/UX Design</a></li>
+                            <li><a href="#services">Mobile Apps</a></li>
+                            <li><a href="#services">Branding</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Portfolio</h4>
+                        <ul>
+                            <li><a href="#portfolio">Web Projects</a></li>
+                            <li><a href="#portfolio">Mobile Apps</a></li>
+                            <li><a href="#portfolio">Brand Identity</a></li>
+                            <li><a href="#portfolio">UI/UX Design</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Newsletter</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Alex Morgan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

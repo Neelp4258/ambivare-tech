@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoFlow Pro - Business Automation by Ambivare</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #10b981;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 50px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .automation-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .workflows-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .workflows-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .workflow-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .workflow-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: scale(1.02);
+        }
+
+        .workflow-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .workflow-title {
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .workflow-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #10b981;
+            color: white;
+        }
+
+        .status-paused {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .status-draft {
+            background: #6b7280;
+            color: white;
+        }
+
+        .workflow-steps {
+            margin: 20px 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .step-complete {
+            background: #10b981;
+            color: white;
+        }
+
+        .step-pending {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .step-inactive {
+            background: #374151;
+            color: #9ca3af;
+        }
+
+        .workflow-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .automation-builder {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            padding: 40px;
+            border-radius: 25px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .builder-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .tool-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tool-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .savings-highlight {
+            font-size: 24px;
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .integration-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .integration-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .floating-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .floating-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">⚡ AutoFlow Pro</div>
+            <div class="status-indicator">
+                <div class="pulse"></div>
+                47 Automations Running
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Business Process Automation</h1>
+            <p style="font-size: 20px; opacity: 0.9; margin-bottom: 25px;">
+                Streamline operations with intelligent workflows and AI-powered automation
+            </p>
+            <div style="background: linear-gradient(45deg, #10b981, #059669); padding: 15px 30px; border-radius: 25px; display: inline-block; font-weight: 600;">
+                🤖 AI Optimization Engine Active
+            </div>
+        </div>
+
+        <div class="automation-stats">
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-value">2,847</div>
+                <div>Tasks Automated</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-value">$45K</div>
+                <div>Monthly Savings</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-value">340hrs</div>
+                <div>Time Saved/Month</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-value">94%</div>
+                <div>Efficiency Gain</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value">99.7%</div>
+                <div>Success Rate</div>
+            </div>
+        </div>
+
+        <div class="section-title">🔄 Active Automation Workflows</div>
+        <div class="workflows-grid">
+            <div class="workflow-card">
+                <div class="workflow-header">
+                    <div class="workflow-title">📧 Email Marketing Automation</div>
+                    <div class="workflow-status status-active">Active</div>
+                </div>
+                <p style="opacity: 0.8; margin-bottom: 20px;">Automated lead nurturing and customer engagement campaigns</p>
+                <div class="workflow-steps">
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>Lead capture from website forms</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>AI-powered lead scoring</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-pending">⏳</div>
+                        <div>Personalized email sequences</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-inactive">⏸</div>
+                        <div>Follow-up scheduling</div>
+                    </div>
+                </div>
+                <div class="workflow-actions">
+                    <button class="btn btn-primary" onclick="manageWorkflow('email')">Manage</button>
+                    <button class="btn btn-secondary">Analytics</button>
+                </div>
+            </div>
+
+            <div class="workflow-card">
+                <div class="workflow-header">
+                    <div class="workflow-title">💰 Invoice Processing</div>
+                    <div class="workflow-status status-active">Active</div>
+                </div>
+                <p style="opacity: 0.8; margin-bottom: 20px;">Automated invoice generation, approval, and payment processing</p>
+                <div class="workflow-steps">
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>Invoice generation from CRM</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>Automated approval routing</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>Payment processing</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>Receipt confirmation</div>
+                    </div>
+                </div>
+                <div class="workflow-actions">
+                    <button class="btn btn-primary" onclick="manageWorkflow('invoice')">Manage</button>
+                    <button class="btn btn-secondary">Reports</button>
+                </div>
+            </div>
+
+            <div class="workflow-card">
+                <div class="workflow-header">
+                    <div class="workflow-title">👥 HR Onboarding</div>
+                    <div class="workflow-status status-active">Active</div>
+                </div>
+                <p style="opacity: 0.8; margin-bottom: 20px;">Complete employee onboarding automation from hire to day-one</p>
+                <div class="workflow-steps">
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>Welcome email & documentation</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-pending">⏳</div>
+                        <div>IT setup & account creation</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-inactive">⏸</div>
+                        <div>Training schedule assignment</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-inactive">⏸</div>
+                        <div>First week check-ins</div>
+                    </div>
+                </div>
+                <div class="workflow-actions">
+                    <button class="btn btn-primary" onclick="manageWorkflow('hr')">Manage</button>
+                    <button class="btn btn-secondary">Configure</button>
+                </div>
+            </div>
+
+            <div class="workflow-card">
+                <div class="workflow-header">
+                    <div class="workflow-title">📊 Data Backup & Sync</div>
+                    <div class="workflow-status status-paused">Scheduled</div>
+                </div>
+                <p style="opacity: 0.8; margin-bottom: 20px;">Automated data backup, synchronization, and disaster recovery</p>
+                <div class="workflow-steps">
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>Daily incremental backups</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>Cloud synchronization</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-complete">✓</div>
+                        <div>Integrity verification</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon step-pending">⏳</div>
+                        <div>Next backup: 2:00 AM</div>
+                    </div>
+                </div>
+                <div class="workflow-actions">
+                    <button class="btn btn-primary" onclick="manageWorkflow('backup')">Manage</button>
+                    <button class="btn btn-secondary">Logs</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="automation-builder">
+            <h2>🛠️ Workflow Builder</h2>
+            <p style="opacity: 0.9; margin-bottom: 30px;">Create custom automations with our drag-and-drop interface</p>
+            <div class="builder-tools">
+                <div class="tool-item" onclick="createWorkflow('trigger')">
+                    <div style="font-size: 30px; margin-bottom: 15px;">🎯</div>
+                    <h3>Triggers</h3>
+                    <p>Start workflows automatically</p>
+                </div>
+                <div class="tool-item" onclick="createWorkflow('action')">
+                    <div style="font-size: 30px; margin-bottom: 15px;">⚡</div>
+                    <h3>Actions</h3>
+                    <p>Automate tasks and processes</p>
+                </div>
+                <div class="tool-item" onclick="createWorkflow('condition')">
+                    <div style="font-size: 30px; margin-bottom: 15px;">🔀</div>
+                    <h3>Conditions</h3>
+                    <p>Smart decision logic</p>
+                </div>
+                <div class="tool-item" onclick="createWorkflow('integration')">
+                    <div style="font-size: 30px; margin-bottom: 15px;">🔗</div>
+                    <h3>Integrations</h3>
+                    <p>Connect your tools</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="card">
+                <h3 class="card-title">📈 Automation Performance</h3>
+                <div class="metric-item">
+                    <span>Tasks Completed Today</span>
+                    <span class="savings-highlight">1,247</span>
+                </div>
+                <div class="metric-item">
+                    <span>Average Processing Time</span>
+                    <span>2.3 seconds</span>
+                </div>
+                <div class="metric-item">
+                    <span>Error Rate</span>
+                    <span style="color: #10b981;">0.3%</span>
+                </div>
+                <div class="metric-item">
+                    <span>Cost per Task</span>
+                    <span style="color: #10b981;">$0.02</span>
+                </div>
+                <div class="metric-item">
+                    <span>ROI This Month</span>
+                    <span class="savings-highlight">450%</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">🔗 System Integrations</h3>
+                <div class="integration-grid">
+                    <div class="integration-item">
+                        <div style="font-size: 24px; margin-bottom: 10px;">📧</div>
+                        <div>Gmail</div>
+                        <div style="color: #10b981; font-size: 12px;">Connected</div>
+                    </div>
+                    <div class="integration-item">
+                        <div style="font-size: 24px; margin-bottom: 10px;">📋</div>
+                        <div>Slack</div>
+                        <div style="color: #10b981; font-size: 12px;">Active</div>
+                    </div>
+                    <div class="integration-item">
+                        <div style="font-size: 24px; margin-bottom: 10px;">💼</div>
+                        <div>Salesforce</div>
+                        <div style="color: #10b981; font-size: 12px;">Synced</div>
+                    </div>
+                    <div class="integration-item">
+                        <div style="font-size: 24px; margin-bottom: 10px;">📊</div>
+                        <div>Google Sheets</div>
+                        <div style="color: #10b981; font-size: 12px;">Live</div>
+                    </div>
+                    <div class="integration-item">
+                        <div style="font-size: 24px; margin-bottom: 10px;">💳</div>
+                        <div>Stripe</div>
+                        <div style="color: #10b981; font-size: 12px;">Integrated</div>
+                    </div>
+                    <div class="integration-item">
+                        <div style="font-size: 24px; margin-bottom: 10px;">📅</div>
+                        <div>Calendar</div>
+                        <div style="color: #10b981; font-size: 12px;">Synced</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="addIntegration()">
+                    + Add New Integration
+                </button>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 30px;">
+            <h3 class="card-title">🤖 AI Automation Insights</h3>
+            <div style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <p style="margin-bottom: 15px;"><strong>Smart Recommendations:</strong></p>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Optimize email workflow timing - 23% better engagement at 2 PM</li>
+                    <li>Automate customer support tickets - potential 40 hours/week savings</li>
+                    <li>Implement inventory reorder automation - prevent 15% stockouts</li>
+                    <li>Add social media posting workflow - increase engagement by 67%</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-fab" onclick="quickCreate()">
+        ➕
+    </div>
+
+    <footer style="background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <p>&copy; 2025 AutoFlow Pro - Powered by Ambivare Solutions</p>
+        <p style="margin-top: 10px; opacity: 0.8;">Advanced Business Process Automation Platform</p>
+    </footer>
+
+    <script>
+        function manageWorkflow(type) {
+            const workflows = {
+                email: 'Email Marketing Automation',
+                invoice: 'Invoice Processing System',
+                hr: 'HR Onboarding Workflow',
+                backup: 'Data Backup & Sync'
+            };
+
+            alert(`🔧 Managing ${workflows[type]}\n\n✅ Current Status: Running smoothly\n📊 Performance: 99.2% success rate\n⚡ Last execution: 3 minutes ago\n🎯 Next scheduled: In 1 hour\n\nOptions:\n• Pause/Resume workflow\n• Edit automation rules\n• View detailed analytics\n• Clone for new project\n\n- AutoFlow Pro Management`);
+        }
+
+        function createWorkflow(tool) {
+            const tools = {
+                trigger: 'Workflow Triggers',
+                action: 'Automation Actions', 
+                condition: 'Logic Conditions',
+                integration: 'System Integrations'
+            };
+
+            alert(`🛠️ ${tools[tool]} Builder\n\n📋 Available Options:\n• Drag & drop interface\n• Pre-built templates\n• Custom code blocks\n• AI-suggested optimizations\n\n🚀 Create powerful automations in minutes!\n\n- AutoFlow Pro Builder`);
+        }
+
+        function addIntegration() {
+            alert('🔗 Integration Marketplace\n\n📱 Popular Integrations:\n• Zapier (5000+ apps)\n• Microsoft 365\n• Shopify\n• HubSpot\n• Zoho\n• QuickBooks\n• Jira\n• Trello\n\n⚡ Setup time: 2-5 minutes\n🔒 Enterprise-grade security\n\n- AutoFlow Pro Integrations');
+        }
+
+        function quickCreate() {
+            alert('⚡ Quick Automation Creator\n\n🎯 Popular Templates:\n• Lead qualification workflow\n• Customer onboarding sequence\n• Social media scheduling\n• Report generation\n• Data synchronization\n• Notification systems\n\n🤖 AI will suggest the best automation for your needs!\n\n- AutoFlow Pro');
+        }
+
+        // Simulate real-time updates
+        setInterval(() => {
+            const tasksCompleted = document.querySelector('.stat-value');
+            const currentTasks = parseInt(tasksCompleted.textContent.replace(',', ''));
+            const newTasks = currentTasks + Math.floor(Math.random() * 5);
+            tasksCompleted.textContent = newTasks.toLocaleString();
+        }, 4000);
+
+        // Animate workflow steps
+        setInterval(() => {
+            const pendingSteps = document.querySelectorAll('.step-pending');
+            const inactiveSteps = document.querySelectorAll('.step-inactive');
+            
+            if (Math.random() > 0.7 && pendingSteps.length > 0) {
+                const randomPending = pendingSteps[Math.floor(Math.random() * pendingSteps.length)];
+                randomPending.classList.remove('step-pending');
+                randomPending.classList.add('step-complete');
+                randomPending.textContent = '✓';
+            }
+            
+            if (Math.random() > 0.8 && inactiveSteps.length > 0) {
+                const randomInactive = inactiveSteps[Math.floor(Math.random() * inactiveSteps.length)];
+                randomInactive.classList.remove('step-inactive');
+                randomInactive.classList.add('step-pending');
+                randomInactive.textContent = '⏳';
+            }
+        }, 6000);
+    </script>
+</body>
+</html>

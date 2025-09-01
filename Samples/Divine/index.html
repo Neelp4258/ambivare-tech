@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAURI Excellence – Divine Direction</title>
+    <link rel="icon" href="https://i.imgur.com/gK22E1Z.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a0dad;
+            --secondary: #8a2be2;
+            --accent: #ffd700;
+            --dark: #1a1a2e;
+            --light: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-divine: linear-gradient(135deg, #6a0dad 0%, #8a2be2 50%, #ffd700 100%);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 25px rgba(0,0,0,0.15);
+            --shadow-lg: 0 25px 50px rgba(0,0,0,0.25);
+            --border-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Cursor effects */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        /* Floating particles background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient-divine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            padding: 0 2rem;
+            z-index: 2;
+            animation: heroFadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            animation: floatUpDown 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 20%; left: 10%; width: 80px; height: 80px; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 60%; right: 15%; width: 120px; height: 120px; animation-delay: 2s; }
+        .floating-element:nth-child(3) { bottom: 20%; left: 20%; width: 60px; height: 60px; animation-delay: 4s; }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-divine);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .pillar-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--gradient-divine);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .pillar-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-header {
+            background: var(--gradient-divine);
+            padding: 3rem 2rem 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: servicePattern 20s linear infinite;
+        }
+
+        @keyframes servicePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .service-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .service-list li::before {
+            content: '✦';
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Mission Vision Values */
+        .mvv {
+            background: var(--dark);
+            color: white;
+        }
+
+        .mvv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .mvv-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .mvv-card:hover {
+            transform: scale(1.05);
+        }
+
+        .mvv-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            background: var(--gradient-divine);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mvv-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .mvv-card ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .mvv-card li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .mvv-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            background: var(--light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+            border-bottom-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--dark);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 6rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-divine);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .submit-btn {
+            background: var(--gradient-divine);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            margin-bottom: 3rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-divine);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .footer-text {
+            color: #666;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .mvv-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-divine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <nav class="nav-container">
+            <a href="#home" class="logo">
+                <img src="https://i.imgur.com/gK22E1Z.png" alt="GAURI Excellence">
+                <span>GAURI Excellence</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#home">Home</a></li>
+                <li class="nav-item"><a href="#about">About</a></li>
+                <li class="nav-item"><a href="#services">Services</a></li>
+                <li class="nav-item"><a href="#mission">Mission</a></li>
+                <li class="nav-item"><a href="#why">Why Us</a></li>
+                <li class="nav-item"><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        
+        <div class="hero-content">
+            <h1>Divine Direction for Human Excellence</h1>
+            <p class="hero-subtitle">Where Professional Growth Meets Spiritual Evolution</p>
+            <a href="#contact" class="cta-button">
+                <i class="fas fa-rocket"></i>
+                Begin Your Journey
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Who We Are</h2>
+                <p class="section-subtitle">GAURI Excellence is where ancient wisdom meets modern innovation, guiding individuals and organizations toward true success.</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-content slide-in-left">
+                    <h3>Empowering Human Potential</h3>
+                    <p>Founded in 2025, GAURI Excellence stands at the intersection of professional achievement and spiritual enlightenment. We believe that true success encompasses both material prosperity and inner growth.</p>
+                    <p>Our mission transcends traditional business consulting. We are dedicated to unlocking the divine potential within every individual and organization we serve.</p>
+                </div>
+                
+                <div class="pillars-grid slide-in-right">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h4>GAURI Talent</h4>
+                        <p>Strategic HR solutions that connect organizations with purpose-driven professionals who align with their values and vision.</p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="fas fa-lotus"></i>
+                        </div>
+                        <h4>GAURI Tatva</h4>
+                        <p>Wisdom platform sharing transformative teachings from ancient traditions and modern insights for personal evolution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Our Sacred Services</h2>
+                <p class="section-subtitle">Comprehensive solutions that honor both your professional ambitions and spiritual journey.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3>GAURI Talent</h3>
+                        <p>Elite HR Consultancy</p>
+                    </div>
+                    <div class="service-content">
+                        <p>We don't just find employees; we discover the souls destined to elevate your organization to divine heights.</p>
+                        <ul class="service-list">
+                            <li>Executive Search & Leadership Placement</li>
+                            <li>Comprehensive Talent Acquisition</li>
+                            <li>BPO & Outsourcing Solutions</li>
+                            <li>HR Process Optimization</li>
+                            <li>Employer Branding & Culture Development</li>
+                            <li>Performance Management Systems</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-yin-yang"></i>
+                        </div>
+                        <h3>GAURI Tatva</h3>
+                        <p>Spiritual Enlightenment</p>
+                    </div>
+                    <div class="service-content">
+                        <p>Ancient wisdom reimagined for modern seekers. Transform your consciousness and unlock your divine potential.</p>
+                        <ul class="service-list">
+                            <li>Vedantic Wisdom Sessions</li>
+                            <li>Bhagavad Gita Study Circles</li>
+                            <li>Youth Motivation Programs</li>
+                            <li>Corporate Spiritual Wellness</li>
+                            <li>Personal Transformation Coaching</li>
+                            <li>Digital Content & Online Courses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Vision Values -->
+    <section id="mission" class="section mvv">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title" style="color: white;">Our Divine Purpose</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">The sacred principles that guide every aspect of our existence and service.</p>
+            </div>
+            
+            <div class="mvv-grid">
+                <div class="mvv-card fade-in">
+                    <div class="mvv-icon">🔮</div>
+                    <h3>Vision</h3>
+                    <p>To become the global beacon of holistic excellence, where spiritual wisdom illuminates professional success, creating a world where every individual realizes their divine potential.</p>
+                </div>
+                
+                <div class="mvv-card fade-in">
+                    <div class="mvv-icon">🎯</div>
+                    <h3>Mission</h3>
+                    <ul>
+                        <li>Deliver transformative HR solutions through GAURI Talent</li>
+                        <li>Spread ancient wisdom through GAURI Tatva</li>
+                        <li>Bridge the gap between material success and spiritual fulfillment</li>
+                        <li>Create conscious leaders and awakened organizations</li>
+                    </ul>
+                </div>
+                
+                <div class="mvv-card fade-in">
+                    <div class="mvv-icon">💎</div>
+                    <h3>Core Values</h3>
+                    <ul>
+                        <li><strong>Divine Integrity:</strong> Truth as our foundation</li>
+                        <li><strong>Sacred Excellence:</strong> Perfection in every endeavor</li>
+                        <li><strong>Compassionate Service:</strong> Love-driven solutions</li>
+                        <li><strong>Continuous Evolution:</strong> Growth without limits</li>
+                        <li><strong>Spiritual Grounding:</strong> Wisdom from within</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why" class="section why-choose">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Why Choose Divine Excellence</h2>
+                <p class="section-subtitle">Experience the difference when ancient wisdom meets cutting-edge innovation.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4>Certified Excellence</h4>
+                    <p>MSME registered, fully compliant, and backed by proven track records of transformational success.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Human-Centric Approach</h4>
+                    <p>Every solution is crafted with deep empathy, understanding the unique essence of your journey.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h4>Holistic Integration</h4>
+                    <p>Where strategy meets soul - combining business acumen with spiritual intelligence.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Future-Ready Vision</h4>
+                    <p>Rooted in tradition, powered by innovation - preparing you for tomorrow's challenges today.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Trusted Partnership</h4>
+                    <p>Built on transparency, integrity, and unwavering commitment to your success and growth.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h4>Transformational Results</h4>
+                    <p>Not just services, but sacred transformations that elevate every aspect of your existence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title" style="color: white;">Connect with Divine Excellence</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Ready to embark on your journey of transformation? Let's create magic together.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info slide-in-left">
+                    <h3>Reach Out to Us</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Our Sacred Space</h4>
+                            <p>Divine Excellence Hub<br>Your City, Your State</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Divine Hotline</h4>
+                            <p><a href="tel:+919321628232" style="color: white;">+91 9321628232</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Sacred Messages</h4>
+                            <p><a href="mailto:info@gauriexcellence.in" style="color: white;">info@gauriexcellence.in</a></p>
+                            <p><a href="mailto:shushant@gauriexcellence.in" style="color: white;">shushant@gauriexcellence.in</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <h4>Digital Presence</h4>
+                            <p><a href="https://www.gauriexcellence.in" target="_blank" style="color: white;">www.gauriexcellence.in</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form slide-in-right">
+                    <h3 style="text-align: center; margin-bottom: 2rem; color: var(--accent);">✨ Send Your Sacred Message ✨</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Divine Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Sacred Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Message Purpose</label>
+                            <input type="text" id="subject" name="subject" placeholder="How can we serve you?">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Sacred Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Share your vision, dreams, and how we can help you achieve divine excellence..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Divine Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-nav">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#mission">Mission</a>
+                    <a href="#why">Why Us</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-text">
+                <p>&copy; 2025 GAURI Excellence. All rights reserved.</p>
+                <p style="color: var(--accent); font-family: 'Playfair Display', serif; font-style: italic; margin-top: 1rem; font-size: 1.2rem;">
+                    "Divine Direction" ✨
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                    Designed & Crafted with 🤍 by Divine Digital Team
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function updateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+
+        // Floating Particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particles.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Mobile Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header Background on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(26, 26, 46, 0.98)';
+            } else {
+                header.style.background = 'rgba(26, 26, 46, 0.95)';
+            }
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                submitBtn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                    this.reset();
+                }, 2000);
+                
+                // Show success message
+                alert('Thank you for your divine message! We will connect with you soon. 🙏');
+            }, 2000);
+        });
+
+        // Dynamic Greeting based on Time
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            let greeting = 'Where Professional Growth Meets Spiritual Evolution';
+            
+            if (hour < 12) {
+                greeting = '🌅 Good Morning! ' + greeting;
+            } else if (hour < 17) {
+                greeting = '☀️ Good Afternoon! ' + greeting;
+            } else {
+                greeting = '🌙 Good Evening! ' + greeting;
+            }
+            
+            heroSubtitle.textContent = greeting;
+        }
+        updateGreeting();
+
+        // Parallax Effect for Hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.service-card, .pillar-card, .feature-card, .mvv-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Typing effect for hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Apply typing effect after loading
+        setTimeout(() => {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            typeWriter(heroTitle, originalText, 80);
+        }, 2000);
+
+        // Add magical sparkle effect
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.width = '6px';
+            sparkle.style.height = '6px';
+            sparkle.style.background = 'var(--accent)';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '9999';
+            sparkle.style.animation = 'sparkle 0.8s ease-out forwards';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 800);
+        }
+
+        // Add sparkle CSS animation
+        const sparkleCSS = `
+            @keyframes sparkle {
+                0% { transform: scale(0) rotate(0deg); opacity: 1; }
+                50% { transform: scale(1) rotate(180deg); opacity: 1; }
+                100% { transform: scale(0) rotate(360deg); opacity: 0; }
+            }
+        `;
+        const style = document.createElement('style');
+        style.textContent = sparkleCSS;
+        document.head.appendChild(style);
+
+        // Add sparkles on button hover
+        document.querySelectorAll('.cta-button, .submit-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function(e) {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        const rect = this.getBoundingClientRect();
+                        const x = rect.left + Math.random() * rect.width;
+                        const y = rect.top + Math.random() * rect.height;
+                        createSparkle(x, y);
+                    }, i * 100);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
