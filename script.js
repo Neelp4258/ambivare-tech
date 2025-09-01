@@ -958,6 +958,31 @@ function downloadComic() {
     }, 1000);
 }
 
+function downloadComicAndOpenSite(event) {
+    // Prevent default link behavior
+    event.preventDefault();
+    
+    // Show notification
+    showNotification('Downloading Ambivare Man Comic and opening website...', 'info');
+    
+    // First, trigger the download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = 'https://ambivare.com/Ambivare_man.pdf';
+    downloadLink.download = 'Ambivare_Man.pdf';
+    downloadLink.style.display = 'none';
+    
+    // Add to DOM, click, and remove
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    
+    // Then, open the website in a new tab after a short delay
+    setTimeout(() => {
+        window.open('https://ambivare.com', '_blank');
+        showNotification('Comic downloaded! Website opened in new tab.', 'success');
+    }, 500);
+}
+
 // ===== PERFORMANCE OPTIMIZATION =====
 // Debounce function for scroll events
 function debounce(func, wait) {
