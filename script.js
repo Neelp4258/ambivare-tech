@@ -408,10 +408,29 @@ function initializeTheme() {
             }
         });
         
+        // Add fallback for older browsers
+        themeToggle.onclick = function(e) {
+            e.preventDefault();
+            console.log('Theme toggle fallback clicked');
+            toggleTheme();
+        };
+        
         console.log('Theme toggle event listeners added');
     } else {
         console.error('Theme toggle button not found');
     }
+    
+    // Add fallback for when JavaScript is disabled
+    document.addEventListener('DOMContentLoaded', function() {
+        const fallbackToggle = document.getElementById('themeToggle');
+        if (fallbackToggle && !fallbackToggle.hasAttribute('data-initialized')) {
+            fallbackToggle.setAttribute('data-initialized', 'true');
+            fallbackToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleTheme();
+            });
+        }
+    });
 }
 
 function setTheme(theme) {
