@@ -565,8 +565,10 @@ function initializeNavigation() {
         link.addEventListener('click', (e) => {
             const targetId = link.getAttribute('href');
             
+            console.log('Nav link clicked:', targetId, 'Type:', typeof targetId);
+            
             // Check if it's an internal anchor link (starts with #)
-            if (targetId.startsWith('#')) {
+            if (targetId && targetId.startsWith('#')) {
                 e.preventDefault();
                 const targetSection = document.querySelector(targetId);
                 
@@ -585,9 +587,14 @@ function initializeNavigation() {
             }
             // For external links (like templates.html), let them work normally
             // Just close mobile menu if open
-            else if (navMenu && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
+            else if (targetId && !targetId.startsWith('#')) {
+                console.log('External link clicked, allowing navigation to:', targetId);
+                // Close mobile menu if open
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
+                // Don't prevent default - let the link work normally
             }
         });
     });
